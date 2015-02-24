@@ -13,11 +13,11 @@
   height: 200%;
 }
 .navbar-inverse .navbar-toggle:focus, .navbar-inverse .navbar-toggle:hover {
-background-color: #5895E9;
+  background-color: #5895E9;
 }
 .navbar-inverse .navbar-nav>.open>a, .navbar-inverse .navbar-nav>.open>a:focus, .navbar-inverse .navbar-nav>.open>a:hover {
-color: #fff;
-background-color: #5895E9;
+  color: #fff;
+  background-color: #5895E9;
 }
 .navbar-fixed-bottom {
   padding: 8px;
