@@ -1,10 +1,10 @@
 
 
 @font-face {
-    font-family: AmericanTypewriter;
-    src: url(fonts/AmericanTypewriter.ttc);
-    font-family: Chalkboard;
-    src: url(fonts/Chalkboard.ttc);
+    font-family: 'AmericanTypewriter';
+    src: url(../fonts/AmericanTypewriter.ttc);
+    font-family: 'Chalkboard';
+    src: url(../fonts/Chalkboard.ttc);
 }
 
 .text-vertical-center h1 {
@@ -12,7 +12,7 @@
     padding: 0;
     font-size: 3.0em;
     font-weight: 700;
-    font-family: AmericanTypewriter;
+    font-family: 'AmericanTypewriter';
 
 }
 
@@ -24,7 +24,7 @@
  	margin-bottom: 10px;
  	font-weight: 500;
 	line-height: 1.1;
- 	font-family: Chalkboard;
+ 	font-family: 'Chalkboard';
 }
 
 @media(min-width:768px) {
