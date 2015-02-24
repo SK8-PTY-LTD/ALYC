@@ -1,0 +1,42 @@
+.navbar-inverse {
+  text-align: center;
+  background-color: #052B73;
+}
+.navbar-inverse .navbar-nav>.active>a, .navbar-inverse .navbar-nav>.active>a:focus, .navbar-inverse .navbar-nav>.active>a:hover {
+  color: #fff;
+  background-color: #5895E9;
+}
+.navbar-brand {
+  height: 50px;
+}
+.navbar-brand img {
+  height: 200%;
+}
+.navbar-inverse .navbar-toggle:focus, .navbar-inverse .navbar-toggle:hover {
+background-color: #5895E9;
+}
+.navbar-inverse .navbar-nav>.open>a, .navbar-inverse .navbar-nav>.open>a:focus, .navbar-inverse .navbar-nav>.open>a:hover {
+color: #fff;
+background-color: #5895E9;
+}
+.navbar-fixed-bottom {
+  padding: 8px;
+  text-align: center;
+}
+ul.social-buttons li a {
+  display: block;
+  background-color: #052B73;
+  height: 40px;
+  width: 40px;
+  border-radius: 100%;
+  font-size: 21px;
+  line-height: 40px;
+  color: white;
+  outline: none;
+  -webkit-transition: all 0.3s;
+  -moz-transition: all 0.3s;
+  transition: all 0.3s;
+}
+ul.social-buttons li a:hover, ul.social-buttons li a:focus, ul.social-buttons li a:active {
+  background-color: #5895E9;
+}
