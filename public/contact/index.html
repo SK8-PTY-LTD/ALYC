@@ -14,6 +14,7 @@
 		<!--[if IE]>
 		<script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
 		<![endif]-->
+		<script src="https://maps.googleapis.com/maps/api/js"></script>
 	</head>
 	<body>
 		<!-- Header -->
@@ -62,32 +63,33 @@
 				</div>
 			</nav>
 		</header>
-		<div class="modal fade" id="contactModal" tabindex="-1" role="dialog" aria-labelledby="contactModalLabel" aria-hidden="true">
-			<div class="modal-dialog">
-				<div class="modal-content">
-					<div class="modal-header">
-						<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-						<h4 class="modal-title" id="contactModalLabel">Contact JMS Cruise</h4>
-					</div>
-					<div class="modal-body">
-						<form>
-							<div class="form-group">
-								<label for="recipient-name" class="control-label">Subject:</label>
-								<input type="text" class="form-control" id="recipient-name" value="New Enquiry">
-							</div>
-							<div class="form-group">
-								<label for="message-text" class="control-label">Message:</label>
-								<textarea class="form-control" id="message-text"></textarea>
-							</div>
-						</form>
-					</div>
-					<div class="modal-footer">
-						<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-						<button type="button" class="btn btn-primary">Send message</button>
-					</div>
+		<!-- <div class="modal fade" id="contactModal" tabindex="-1" role="dialog" aria-labelledby="contactModalLabel" aria-hidden="true">
+				<div class="modal-dialog">
+						<div class="modal-content">
+								<div class="modal-header">
+										<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+										<h4 class="modal-title" id="contactModalLabel">Contact JMS Cruise</h4>
+								</div>
+								<div class="modal-body">
+										<form>
+												<div class="form-group">
+														<label for="recipient-name" class="control-label">Subject:</label>
+														<input type="text" class="form-control" id="recipient-name" value="New Enquiry">
+												</div>
+												<div class="form-group">
+														<label for="message-text" class="control-label">Message:</label>
+														<textarea class="form-control" id="message-text"></textarea>
+												</div>
+										</form>
+								</div>
+								<div class="modal-footer">
+										<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+										<button type="button" class="btn btn-primary">Send message</button>
+								</div>
+						</div>
 				</div>
-			</div>
-		</div>
+		</div> -->
+		<!-- Member -->
 		<div class="modal fade" id="memberModal" tabindex="-1" role="dialog" aria-labelledby="memberModal" aria-hidden="true">
 			<div class="modal-dialog">
 				<div class="modal-content">
@@ -114,6 +116,45 @@
 				</div>
 			</div>
 		</div>
+		<!-- Contact Main -->
+		<div class="container">
+			<div class="row">
+				<div class="col-md-offset-1 col-md-7">
+					<address>
+						<b>Office address:</b><br>
+						Suite 605, Pacific Trade Centre ,368 Sussex Street,Sydney NSW 2000<br>
+						<b>Office phone number:</b><br>
+						(02) 9268 0883<br>
+						<b>Fax:</b><br>
+						02 92680580
+					</address>
+					<div id="map-canvas"></div>
+				</div>
+				<div class="col-md-3">
+					<form>
+						<div class="form-group">
+							<label for="InputFullName">Your Full Name</label>
+							<input class="form-control" id="InputFullName" placeholder="Your Full Name">
+						</div>
+						<div class="form-group">
+							<label for="InputPhoneNumber">Contact Phone Number</label>
+							<input class="form-control" id="InputPhoneNumber" placeholder="Contact Phone Number">
+						</div>
+						<div class="form-group">
+							<label for="InputEmail1">Email address</label>
+							<input type="email" class="form-control" id="InputEmail" placeholder="Enter email">
+						</div>
+						
+						<div class="form-group">
+							<label for="InputContent">Contact us</label>
+							<textarea class="form-control" rows="3" id="InputContent" placeholder="Type Your questions here"></textarea>
+						</div>
+						<button type="submit" class="btn btn-default">Submit</button>
+					</form>
+				</div>
+			</div>
+		</div>
+		<!-- Footer -->
 		<footer>
 			<nav class="navbar navbar-default navbar-fixed-bottom">
 				<div class="container">
