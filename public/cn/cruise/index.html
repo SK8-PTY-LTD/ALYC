@@ -1,16 +1,17 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" ng-controller="cruiseListCtrl" ng-app="cruiseList">
 	<head>
 		<meta charset="utf-8">
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<meta name="author" content="SK8 PTY LTD">
-		<title>JMS 至尊游艇会</title>
+		<title ng-bind-template="JMS 至尊游艇会 {{query}}">JMS 至尊游艇会</title>
 		<!-- Bootstrap Core CSS -->
 		<link href="../../css/bootstrap.min.css" rel="stylesheet">
 		<!-- Custom Fonts -->
 		<link href="../../font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
 		<link href="../../css/jms-base.css" rel="stylesheet">
+		<link href="../../css/cruise-page.css" rel="stylesheet">
 		<!--[if IE]>
 		<script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
 		<![endif]-->
@@ -84,30 +85,30 @@
 			</div>
 		</div>
 		<!-- <div class="modal fade" id="contactModal" tabindex="-1" role="dialog" aria-labelledby="contactModalLabel" aria-hidden="true">
-			<div class="modal-dialog">
-				<div class="modal-content">
-					<div class="modal-header">
-						<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-						<h4 class="modal-title" id="contactModalLabel">Contact JMS Cruise</h4>
+					<div class="modal-dialog">
+								<div class="modal-content">
+											<div class="modal-header">
+														<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+														<h4 class="modal-title" id="contactModalLabel">Contact JMS Cruise</h4>
+											</div>
+											<div class="modal-body">
+														<form>
+																	<div class="form-group">
+																				<label for="recipient-name" class="control-label">Subject:</label>
+																				<input type="text" class="form-control" id="recipient-name" value="New Enquiry">
+																	</div>
+																	<div class="form-group">
+																				<label for="message-text" class="control-label">Message:</label>
+																				<textarea class="form-control" id="message-text"></textarea>
+																	</div>
+														</form>
+											</div>
+											<div class="modal-footer">
+														<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+														<button type="button" class="btn btn-primary">Send message</button>
+											</div>
+								</div>
 					</div>
-					<div class="modal-body">
-						<form>
-							<div class="form-group">
-								<label for="recipient-name" class="control-label">Subject:</label>
-								<input type="text" class="form-control" id="recipient-name" value="New Enquiry">
-							</div>
-							<div class="form-group">
-								<label for="message-text" class="control-label">Message:</label>
-								<textarea class="form-control" id="message-text"></textarea>
-							</div>
-						</form>
-					</div>
-					<div class="modal-footer">
-						<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-						<button type="button" class="btn btn-primary">Send message</button>
-					</div>
-				</div>
-			</div>
 		</div> -->
 		<div class="modal fade" id="memberModal" tabindex="-1" role="dialog" aria-labelledby="memberModal" aria-hidden="true">
 			<div class="modal-dialog">
@@ -135,6 +136,67 @@
 				</div>
 			</div>
 		</div>
+		<!-- Page Content -->
+		<div class="container">
+			<div class="row">
+				<div class="col-md-3">
+					<div>
+						搜索: <input ng-model="query" placeholder="豪華遊艇">
+					</div>
+					<br>
+					<div class="list-group">
+						<a href="#" class="list-group-item">头等舱</a>
+						<a href="#" class="list-group-item">商务舱</a>
+						<a href="#" class="list-group-item">经济舱</a>
+						<a href="#" class="list-group-item">渔船</a>
+					</div>
+				</div>
+				<div class="col-md-9">
+					<div class="row carousel-holder">
+						<div class="col-md-12">
+							<div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+								<ol class="carousel-indicators">
+									<li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
+									<li data-target="#carousel-example-generic" data-slide-to="1"></li>
+									<li data-target="#carousel-example-generic" data-slide-to="2"></li>
+								</ol>
+								<div class="carousel-inner">
+									<div class="item active">
+										<img class="slide-image" src="http://placehold.it/800x300" alt="">
+									</div>
+									<div class="item">
+										<img class="slide-image" src="http://placehold.it/800x300" alt="">
+									</div>
+									<div class="item">
+										<img class="slide-image" src="http://placehold.it/800x300" alt="">
+									</div>
+								</div>
+								<a class="left carousel-control" href="#carousel-example-generic" data-slide="prev">
+									<span class="glyphicon glyphicon-chevron-left"></span>
+								</a>
+								<a class="right carousel-control" href="#carousel-example-generic" data-slide="next">
+									<span class="glyphicon glyphicon-chevron-right"></span>
+								</a>
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-sm-4 col-lg-4 col-md-4" ng-repeat="cruise in cruises | filter:query">
+							<div class="thumbnail">
+								<img src="../../img/firstclass/" alt="">
+								<div class="caption">
+									<h4 class="pull-right">{{cruise.price}}</h4>
+									<h4><a href="#">{{cruise.name}}</a>
+									</h4>
+									<p>{{cruise.introduction}}</p>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- footer -->
 		<footer>
 			<nav class="navbar navbar-default navbar-fixed-bottom">
 				<div class="container">
@@ -163,5 +225,8 @@
 		<script src="../../js/bootstrap.min.js"></script>
 		<!-- Custom JavaScript -->
 		<script src="../../js/jms-base.js"></script>
+		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular.min.js"></script>
+		<script src="../../js/controllers.js"></script>
+		<script src="../../js/scenarios.js"></script>
 	</body>
 </html>
