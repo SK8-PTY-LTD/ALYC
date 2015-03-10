@@ -10,8 +10,8 @@
 		<link href="/css/bootstrap.min.css" rel="stylesheet">
 		<!-- Custom Fonts -->
 		<link href="/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+		<link href="/css/adminlogin.css" rel='stylesheet' type='text/css'>
 		<link href="/css/jms-base.css" rel="stylesheet">
-		<link href="/css/adminlogin.css" rel='stylesheet' type='text/css' />
 		<link href='http://fonts.googleapis.com/css?family=Open+Sans:600italic,400,300,600,700' rel='stylesheet' type='text/css'>
 		<!--[if IE]>
 		<script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
@@ -85,7 +85,7 @@
 				</div>
 			</div>
 		</div>
-
+		<!-- Member -->
 		<div class="modal fade" id="memberModal" tabindex="-1" role="dialog" aria-labelledby="memberModal" aria-hidden="true">
 			<div class="modal-dialog">
 				<div class="modal-content">
@@ -112,24 +112,100 @@
 				</div>
 			</div>
 		</div>
-		<div class="main">
-		<div class="login-form">
-			<h1>管理员登录</h1>
-					<div class="head">
-						<img src="/img/user.png" alt="Login Image"/>
+		<!-- Admin login -->
+		<div class="modal fade" id="adminModal" tabindex="-1" role="dialog" aria-labelledby="adminModal" aria-hidden="true">
+			<div class="modal-dialog">
+				<div class="modal-content" id="adminModalMain">
+					<div class="modal-body login-form">
+						<div class="head">
+							<img src="/img/user.png" alt="Login Image"/>
+						</div>
+						<form method="post" action="/admin" id="adminForm">
+							<label>管理员</label><br>
+							<input name="username" type="text" placeholder= "登陆邮箱" >
+							<label>密码</label><br>
+							<input name="password" type="password" placeholder="登陆密码">
+							<div class="submit">
+								<input type="submit" value="登陆">
+							</div>
+						</form>
 					</div>
-				<form method="post" action="/admin">
-						<input name="username" type="text" class="text" value="登录邮箱" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = '登录邮箱';}" >
-						<input name="password" type="password" value="登录密码" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = '登录密码';}">
-						<div class="submit">
-							<input type="submit" value="登陆" >
-					</div>	
-				</form>
+					
+				</div>
 			</div>
-			<!--//End-login-form-->
 		</div>
-			 <!-----//end-main---->
-		
+		<!-- Main page -->
+		<div class="container">
+			<div class="row">
+				<div class="col-md-offset-5">
+					<p>添加或编辑</p>
+					<p class="help-block text-danger">
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-offset-1 col-md-5">
+					<div class="thumbnail">
+						<img src="" alt="">
+						<div class="caption">
+							<h4 class="pull-right">{{cruise.price}}</h4>
+							<h4><a href="#">{{cruise.name}}</a>
+							</h4>
+							<p>{{cruise.introduction}}</p>
+						</div>
+						
+					</div>
+					<div class="checkbox">
+						<label>
+							<input type="checkbox" id="agentView">
+							会员
+						</label>
+					</div>
+				</div>
+				<div class="col-md-5">
+					<!-- <form class="form-inline"> -->
+					<form>
+						<div class="form-group">
+							<label>船名</label>
+							<input type="text" class="form-control" placeholder="Boat name *" id="boatName" required>
+						</div>
+						<div class="form-group">
+							<label>类别</label>
+							<select class="form-control" id="boatClass" required>
+								<option>头等舱</option>
+								<option>商务舱</option>
+								<option>经济舱</option>
+								<option>渔船</option>
+							</select>
+							<!-- <p class="help-block text-danger"></p> -->
+						</div>
+						<div class="form-group">
+							<label>价格</label>
+							<input type="text" class="form-control" placeholder="Boat price *" id="boatPrice" required>
+						</div>
+						<div class="form-group">
+							<label>会员价</label>
+							<input type="text" class="form-control" placeholder="Boat promo price *" id="boatPromoPrice" required>
+						</div>
+						<div class="form-group">
+							<label>简要介绍</label>
+							<textarea class="form-control" placeholder="轮船展示简介 *" id="boatBrief" required></textarea>
+							<!-- <p class="help-block text-danger"></p> -->
+						</div>
+						<div class="form-group">
+							<label>详细介绍</label>
+							<textarea class="form-control" placeholder="轮船详情" id="boatDetail"></textarea>
+							<!-- <p class="help-block text-danger"></p> -->
+						</div>
+					</form>
+					
+				</div>
+			</div>
+			<div class="row">
+				
+			</div>
+		</div>
+		<!-- Footer -->
 		<footer>
 			<nav class="navbar navbar-default navbar-fixed-bottom">
 				<div class="container">

@@ -23,6 +23,13 @@
   padding: 8px;
   text-align: center;
 }
+#adminModalMain {
+  background-color: #5895e9;
+  height: 450px;
+}
+#adminForm {
+  padding-top: 80px;
+}
 ul.social-buttons li a {
   display: block;
   background-color: #052B73;
