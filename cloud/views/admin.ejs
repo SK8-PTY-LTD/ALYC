@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" ng-controller="addBoatCtrl" ng-app="JMSCruise">
 	<head>
 		<meta charset="utf-8">
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -56,7 +56,7 @@
 							</li>
 							<li><a href="/cn/service/">服务</a></li>
 							<li><a href="/cn/gallery/">图库</a></li>
-							<li><a href="/cn/about/">关于</a></li>
+							<li type="button" data-toggle="modal" data-target="#addBoatModal"><a>关于</a></li>
 							<li><a href="/cn/contact/">联系我们</a></li>
 							<li type="button" data-toggle="modal" data-target="#memberModal"><a>成员</a></li>
 						</ul>
@@ -64,7 +64,7 @@
 				</div>
 			</nav>
 		</header>
-		<!-- QRcode -->
+		<!-- QRcode modal-->
 		<div class="modal fade" id="contactModal" tabindex="-1" role="dialog" aria-labelledby="contactModalLabel" aria-hidden="true">
 			<div class="modal-dialog">
 				<div class="modal-content">
@@ -85,7 +85,7 @@
 				</div>
 			</div>
 		</div>
-		<!-- Member -->
+		<!-- Member modal-->
 		<div class="modal fade" id="memberModal" tabindex="-1" role="dialog" aria-labelledby="memberModal" aria-hidden="true">
 			<div class="modal-dialog">
 				<div class="modal-content">
@@ -112,7 +112,7 @@
 				</div>
 			</div>
 		</div>
-		<!-- Admin login -->
+		<!-- Admin login Modal-->
 		<div class="modal fade" id="adminModal" tabindex="-1" role="dialog" aria-labelledby="adminModal" aria-hidden="true">
 			<div class="modal-dialog">
 				<div class="modal-content" id="adminModalMain">
@@ -134,75 +134,97 @@
 				</div>
 			</div>
 		</div>
-		<!-- Main page -->
-		<div class="container">
-			<div class="row">
-				<div class="col-md-offset-5">
-					<p>添加或编辑</p>
-					<p class="help-block text-danger">
+		<!-- Add boat modal -->
+		<div class="modal fade" id="addBoatModal" tabindex="-1" role="dialog" aria-labelledby="addBoatModal" aria-hidden="true">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-body">
+						<div class="container">
+							<div class="row">
+								<div class="center-block">
+									<p>添加或编辑</p>
+									<p class="help-block text-danger">
+									</div>
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-md-offset-1 col-md-5">
+									<div class="thumbnail">
+										<img ng-src="{{ cruise.coverImage._url }}" alt="">
+										<!-- <h5>选择封面图片上传</h5> -->
+										<div>
+											<div class="form-group">
+												<input class="form-control" type="file" file-model="myFile"/>
+											</div>
+											
+											<button ng-click="uploadFile()">上传图片</button>
+										</div>
+										<div class="caption">
+											<h4 class="pull-right">$
+											<span ng-if="!isAgent" class="animate-if" ng-bind="cruise.price"></span>
+											<span ng-if="isAgent" class="animate-if" ng-bind="cruise.agentPrice"></span></h4>
+											<h4><a href="#"><span ng-bind="cruise.name"></span></a>
+											</h4>
+											<p><span ng-bind="cruise.summary"></span></p>
+										</div>
+										
+									</div>
+									<div class="checkbox">
+										<label>
+											<input type="checkbox" id="agentView" ng-model="isAgent">
+											会员
+										</label>
+									</div>
+									
+								</div>
+								<div class="col-md-5">
+									<!-- <form class="form-inline"> -->
+									<form>
+										<div class="form-group">
+											<label>船名</label>
+											<input type="text" class="form-control" placeholder="Boat name *" id="boatName" ng-model="cruise.name" required>
+										</div>
+										<div class="form-group">
+											<label>类别</label>
+											<select class="form-control" id="boatClass" required>
+												<option>头等舱</option>
+												<option>商务舱</option>
+												<option>经济舱</option>
+												<option>渔船</option>
+											</select>
+											<!-- <p class="help-block text-danger"></p> -->
+										</div>
+										<div class="form-group">
+											<label>价格</label>
+											<input type="text" class="form-control" placeholder="Boat price *" id="boatPrice" ng-model="cruise.price" required>
+										</div>
+										<div class="form-group">
+											<label>会员价</label>
+											<input type="text" class="form-control" placeholder="Boat promo price *" id="boatPromoPrice" ng-model="cruise.agentPrice" equired>
+										</div>
+										<div class="form-group">
+											<label>简要介绍</label>
+											<textarea type="text" class="form-control" placeholder="Boat brief description *" id="boatBrief" ng-model="cruise.summary" required></textarea>
+											<!-- <p class="help-block text-danger"></p> -->
+										</div>
+										<div class="form-group">
+											<label>详细介绍</label>
+											<textarea class="form-control" placeholder="Boat details" ng-model="cruise.detail" id="boatDetail"></textarea>
+											<!-- <p class="help-block text-danger"></p> -->
+										</div>
+									</form>
+									
+								</div>
+							</div>
+							<div class="row">
+							</div>
+						</div>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-default" data-dismiss="modal">登陆</button>
+						<button type="button" class="btn btn-primary">注册</button>
 					</div>
 				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-offset-1 col-md-5">
-					<div class="thumbnail">
-						<img src="" alt="">
-						<div class="caption">
-							<h4 class="pull-right">{{cruise.price}}</h4>
-							<h4><a href="#">{{cruise.name}}</a>
-							</h4>
-							<p>{{cruise.introduction}}</p>
-						</div>
-						
-					</div>
-					<div class="checkbox">
-						<label>
-							<input type="checkbox" id="agentView">
-							会员
-						</label>
-					</div>
-				</div>
-				<div class="col-md-5">
-					<!-- <form class="form-inline"> -->
-					<form>
-						<div class="form-group">
-							<label>船名</label>
-							<input type="text" class="form-control" placeholder="Boat name *" id="boatName" required>
-						</div>
-						<div class="form-group">
-							<label>类别</label>
-							<select class="form-control" id="boatClass" required>
-								<option>头等舱</option>
-								<option>商务舱</option>
-								<option>经济舱</option>
-								<option>渔船</option>
-							</select>
-							<!-- <p class="help-block text-danger"></p> -->
-						</div>
-						<div class="form-group">
-							<label>价格</label>
-							<input type="text" class="form-control" placeholder="Boat price *" id="boatPrice" required>
-						</div>
-						<div class="form-group">
-							<label>会员价</label>
-							<input type="text" class="form-control" placeholder="Boat promo price *" id="boatPromoPrice" required>
-						</div>
-						<div class="form-group">
-							<label>简要介绍</label>
-							<textarea class="form-control" placeholder="轮船展示简介 *" id="boatBrief" required></textarea>
-							<!-- <p class="help-block text-danger"></p> -->
-						</div>
-						<div class="form-group">
-							<label>详细介绍</label>
-							<textarea class="form-control" placeholder="轮船详情" id="boatDetail"></textarea>
-							<!-- <p class="help-block text-danger"></p> -->
-						</div>
-					</form>
-					
-				</div>
-			</div>
-			<div class="row">
-				
 			</div>
 		</div>
 		<!-- Footer -->
@@ -234,5 +256,9 @@
 		<script src="/js/bootstrap.min.js"></script>
 		<!-- Custom JavaScript -->
 		<script src="/js/jms-base.js"></script>
+		<script src="https://leancloud.cn/scripts/lib/av-0.5.0.min.js"></script>
+		<script src="/js/jms.js"></script>
+		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular.min.js"></script>
+		<script src="/js/controllers.js"></script>
 	</body>
 </html>
