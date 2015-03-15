@@ -52,9 +52,28 @@ app.controller('addBoatCtrl', function($scope) {
         //Save file
         avFile.save().then(function() {
             //if successful
-            alert("cover image saved! Yay!");
+            alert("Cover image saved.");
             $scope.$apply(function() {
                 $scope.cruise.coverImage = avFile;
+            });
+            // The file has been saved to AV.
+        }, function(error) {
+            alert("Oh F**k, error: " + error.message);
+            // The file either could not be read, or could not be saved to AV.
+        });
+    };
+
+    $scope.uploadPortfiloFile = function() {
+        //Get and create file
+        var file = $scope.myFile;
+        console.log('file is ' + JSON.stringify(file));
+        var avFile = new AV.File("portfiloImage.jpg", file);
+        //Save file
+        avFile.save().then(function() {
+            //if successful
+            alert("Portfilo image saved.");
+            $scope.$apply(function() {
+                $scope.cruise.portfiloImage = avFile;
             });
             // The file has been saved to AV.
         }, function(error) {

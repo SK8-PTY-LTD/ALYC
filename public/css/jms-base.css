@@ -57,3 +57,19 @@ ul.social-buttons li a:hover, ul.social-buttons li a:focus, ul.social-buttons li
 #contactFormSection {
   margin: 20px;
 }
+
+.head-fix {
+    padding-bottom: 9px;
+    margin: 20px 40px 20px;
+    border-bottom: 1px solid #eee;
+}
+
+#portfiloThumbnail {
+    width: 100%;
+    height: 170px;
+}
+
+#portfiloThumbnail img {
+    max-width: 100%;
+    max-height: 100%;
+}

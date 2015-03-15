@@ -142,15 +142,16 @@
 						<div class="container">
 							<div class="row">
 								<div class="center-block">
-									<p>添加或编辑</p>
+									<h1 class="head-fix">添加或编辑 </h1>
 									<p class="help-block text-danger">
 									</div>
 								</div>
 							</div>
 							<div class="row">
 								<div class="col-md-offset-1 col-md-5">
+									<label>请选择封面图片上传</label>
 									<div class="thumbnail">
-										<img ng-src="{{ cruise.coverImage._url }}" alt="">
+										<img ng-src="{{ cruise.coverImage._url }}">
 										<!-- <h5>选择封面图片上传</h5> -->
 										<div>
 											<div class="form-group">
@@ -163,7 +164,7 @@
 											<h4 class="pull-right">$
 											<span ng-if="!isAgent" class="animate-if" ng-bind="cruise.price"></span>
 											<span ng-if="isAgent" class="animate-if" ng-bind="cruise.agentPrice"></span></h4>
-											<h4><a href="#"><span ng-bind="cruise.name"></span></a>
+											<h4><span ng-bind="cruise.name"></span>
 											</h4>
 											<p><span ng-bind="cruise.summary"></span></p>
 										</div>
@@ -217,7 +218,23 @@
 								</div>
 							</div>
 							<div class="row">
-							</div>
+								<h2 class="head-fix">上传更多图片</h2>
+								<div class="col-sm-4 col-lg-4 col-md-4" >
+									<div id="portfiloThumbnail" class="thumbnail">
+										<img ng-src="{{ cruise.portfiloImage._url }}">
+									</div>
+								</div>
+							</div>	
+								<div class="row">
+									
+										<div class="col-sm-6 col-lg-6 col-md-6 form-group">
+											<input class="form-control" type="file" file-model="myFile"/>
+										</div>
+										
+										<button ng-click="uploadPortfiloFile()">上传图片</button>
+									
+								</div>
+							
 						</div>
 					</div>
 					<div class="modal-footer">
