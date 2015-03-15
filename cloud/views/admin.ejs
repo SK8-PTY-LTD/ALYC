@@ -219,10 +219,11 @@
 							</div>
 							<div class="row">
 								<h2 class="head-fix">上传更多图片</h2>
-								<div class="col-sm-4 col-lg-4 col-md-4" >
+								<div class="col-sm-4 col-lg-4 col-md-4" ng-repeat="avFile in cruise.imageArray">
 									<div id="portfiloThumbnail" class="thumbnail">
-										<img ng-src="{{ cruise.portfiloImage._url }}">
+										<img ng-src="{{ avFile.url() }} " ng-click="delete(avFile)">
 									</div>
+									<button type="button" class="btn btn-primary">删除</button>
 								</div>
 							</div>	
 								<div class="row">
@@ -232,7 +233,6 @@
 										</div>
 										
 										<button ng-click="uploadPortfiloFile()">上传图片</button>
-									
 								</div>
 							
 						</div>

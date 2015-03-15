@@ -26,10 +26,10 @@
 
 	}
 	JMS.noConflict = function() {
-		root.JMS = previous_mymodule
-		return JMS
-	}
-	//Export module
+			root.JMS = previous_mymodule
+			return JMS
+		}
+		//Export module
 	if (typeof exports !== 'undefined') {
 		if (typeof module !== 'undefined' && module.exports) {
 			exports = module.exports = JMS
@@ -51,81 +51,96 @@
 	//================================================================================
 	// Property setters and getters
 	//================================================================================
-
-	JMS.User.prototype.getEmail = function() {
-		return this.get("email");
-	}
-
-	JMS.User.prototype.setEmail = function(email) {
-		this.set("email", email);
-	}
-
-	JMS.User.prototype.getProfileName = function() {
-		return this.get("profileName");
-	}
-
-	JMS.User.prototype.setProfileName = function(profileName) {
-		this.set("profileName", profileName);
-	}
+	Object.defineProperty(JMS.User.prototype, "email", {
+		get: function() {
+			return this.get("email");
+		},
+		set: function(value) {
+			this.set("email", value);
+		}
+	});
+	Object.defineProperty(JMS.User.prototype, "profileName", {
+		get: function() {
+			return this.get("profileName");
+		},
+		set: function(value) {
+			this.set("profileName", value);
+		}
+	});
+	Object.defineProperty(JMS.User.prototype, "name", {
+		get: function() {
+			return this.get("name");
+		},
+		set: function(value) {
+			this.set("name", value);
+		}
+	});
 
 	JMS.User.prototype.isAdminUser = function() {
 		this.get("isAdminUser");
 	}
 
-	JMS.Category.prototype.getName = function() {
-		return this.get("name");
-	}
+	Object.defineProperty(JMS.Cruise.prototype, "name", {
+		get: function() {
+			return this.get("name");
+		},
+		set: function(value) {
+			this.set("name", value);
+		}
+	});
 
-	JMS.Category.prototype.setName = function(name) {
-		this.set("name", name);
-	}
+	Object.defineProperty(JMS.Cruise.prototype, "summary", {
+		get: function() {
+			return this.get("summary");
+		},
+		set: function(value) {
+			this.set("summary", value);
+		}
+	});
 
-	JMS.Cruise.prototype.getName = function() {
-		return this.get("name");
-	}
+	Object.defineProperty(JMS.Cruise.prototype, "detail", {
+		get: function() {
+			return this.get("detail");
+		},
+		set: function(value) {
+			this.set("detail", value);
+		}
+	});
 
-	JMS.Cruise.prototype.setName = function(name) {
-		this.set("name", name);
-	}
+	Object.defineProperty(JMS.Cruise.prototype, "coverImage", {
+		get: function() {
+			return this.get("coverImage");
+		},
+		set: function(value) {
+			this.set("coverImage", value);
+		}
+	});
 
-	JMS.Cruise.prototype.getSummary = function() {
-		return this.get("summary");
-	}
+	Object.defineProperty(JMS.Cruise.prototype, "imageArray", {
+		get: function() {
+			return this.get("imageArray");
+		},
+		set: function(value) {
+			this.set("imageArray", value);
+		}
+	});
 
-	JMS.Cruise.prototype.setSummary = function(summary) {
-		this.set("summary", summary);
-	}
+	Object.defineProperty(JMS.Cruise.prototype, "priceInCent", {
+		get: function() {
+			return this.get("priceInCent");
+		},
+		set: function(value) {
+			this.set("priceInCent", value);
+		}
+	});
 
-	JMS.Cruise.prototype.getDetail = function() {
-		return this.get("detail");
-	}
-
-	JMS.Cruise.prototype.setDetail = function(detail) {
-		this.set("detail", detail);
-	}
-
-	JMS.Cruise.prototype.getCoverImage = function() {
-		return this.get("coverImage");
-	}
-
-	JMS.Cruise.prototype.setCoverImage = function(coverImage) {
-		this.set("coverImage", coverImage);
-	}
-
-	JMS.Cruise.prototype.getPriceInCent = function() {
-		return this.get("priceInCent");
-	}
-
-	JMS.Cruise.prototype.setPriceInCent = function(priceInCent) {
-		this.set("priceInCent", priceInCent);
-	}
-
-	JMS.Cruise.prototype.getAgentPriceInCent = function() {
-		return this.get("agentPriceInCent");
-	}
-
-	JMS.Cruise.prototype.setAgentPriceInCent = function(agentPriceInCent) {
-		this.set("agentPriceInCent", agentPriceInCent);
-	}
+	Object.defineProperty(JMS.Cruise.prototype, "agentPriceInCent", {
+		get: function() {
+			return this.get("agentPriceInCent");
+		},
+		set: function(value) {
+			this.set("agentPriceInCent", value);
+		}
+	});
 
 }).call(this);

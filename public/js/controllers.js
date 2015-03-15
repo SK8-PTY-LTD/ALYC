@@ -1,27 +1,7 @@
 var app = angular.module('JMSCruise', []);
 
 app.controller('cruiseListCtrl', function($scope) {
-    $scope.cruises = [{
-        'name': '麥特凱',
-        'introduction': '寬闊的甲板空間，流暢的線條，傑出的外觀使其成為一艘極其高貴典雅，超強性能的一艘豪華遊艇.',
-        'price': '$200'
-    }, {
-        'name': '靈魂號',
-        'introduction': '靈魂號無疑有著特別高雅和流線型的風格，別緻的構造能讓您瞬間喚起詹姆士邦德電影中的情懷，讓您立即進入一種放鬆和舒適的狀態.',
-        'price': '$250'
-    }, {
-        'name': '昆騰',
-        'introduction': '昆騰是一艘無可挑剔的120英呎的超級遊艇。擁有世界一流的設計。她是澳大利亞最高端的遊艇之一。',
-        'price': '$150'
-    }, {
-        'name': '堪布里亞',
-        'introduction': '卡布里亞是一艘兼具美麗與優雅的100英呎的豪華遊艇，她復古的外觀設計和內部精心挑選的古董裝飾與家具都時時刻刻在體現著她的美麗與優雅。',
-        'price': '$200'
-    }, {
-        'name': 'AQA',
-        'introduction': 'AQA提供非常優秀的餐飲服務和令人驚歎的後部頂層甲板。除此之外，她還擁有最先進的音響系統，AV要求配備和最豪華的住宿與連接套間。',
-        'price': '$250'
-    }, ];
+
 });
 
 
@@ -73,12 +53,97 @@ app.controller('addBoatCtrl', function($scope) {
             //if successful
             alert("Portfilo image saved.");
             $scope.$apply(function() {
-                $scope.cruise.portfiloImage = avFile;
+                $scope.cruise.add("imageArray", avFile);
+                $scope.cruise.save();
             });
             // The file has been saved to AV.
         }, function(error) {
             alert("Oh F**k, error: " + error.message);
             // The file either could not be read, or could not be saved to AV.
+            file.val(null);
         });
     };
+
+    $scope.delete = function(avFile) {
+        $scope.cruise.remove("imageArray", avFile);
+        $scope.cruise.save();
+    }
+});
+
+app.controller('FirstClassCtrl', function($scope) {
+    //Get first class category
+    var category = new JMS.Category({
+        id: '54fd999be4b0447de160ab23'
+    });
+    //Get all cruises, and select the first class only
+    var query = new AV.Query(JMS.Cruise);
+    query.equalTo("category", category);
+    //Download the list of cruises
+    query.find({
+        success: function(results) {
+            $scope.$apply(function() {
+                $scope.cruiseList = results;
+            });
+        },
+        error: function(error) {
+            alert("Error: " + error.code + " " + error.message);
+        }
+    });
+});
+
+app.controller('BusinessClassCtrl', function($scope) {
+    //Get first class category
+    var category = new JMS.Category({
+        id: '54fd99a7e4b0447de160abb6'
+    });
+    //Get all cruises, and select the first class only
+    var query = new AV.Query(JMS.Cruise);
+    query.equalTo("category", category);
+    //Download the list of cruises
+    query.find({
+        success: function(results) {
+            $scope.cruiseList = results;
+        },
+        error: function(error) {
+            alert("Error: " + error.code + " " + error.message);
+        }
+    });
+});
+
+app.controller('EconomyClassCtrl', function($scope) {
+    //Get first class category
+    var category = new JMS.Category({
+        id: '54fd9a10e4b0447de160b259'
+    });
+    //Get all cruises, and select the first class only
+    var query = new AV.Query(JMS.Cruise);
+    query.equalTo("category", category);
+    //Download the list of cruises
+    query.find({
+        success: function(results) {
+            $scope.cruiseList = results;
+        },
+        error: function(error) {
+            alert("Error: " + error.code + " " + error.message);
+        }
+    });
+});
+
+app.controller('FishingClassCtrl', function($scope) {
+    //Get first class category
+    var category = new JMS.Category({
+        id: '54fd9a21e4b0447de160b36a'
+    });
+    //Get all cruises, and select the first class only
+    var query = new AV.Query(JMS.Cruise);
+    query.equalTo("category", category);
+    //Download the list of cruises
+    query.find({
+        success: function(results) {
+            $scope.cruiseList = results;
+        },
+        error: function(error) {
+            alert("Error: " + error.code + " " + error.message);
+        }
+    });
 });
