@@ -41,10 +41,10 @@
 								<ul class="dropdown-menu" role="menu">
 									<li><a href="../cruise/">所有游轮</a></li>
 									<li class="divider"></li>
-									<li><a href="../cruise/#first">头等舱</a></li>
-									<li><a href="../cruise/#business">商务舱</a></li>
-									<li><a href="../cruise/#economy">经济舱</a></li>
-									<li><a href="../cruise/#fishing">渔船</a></li>
+									<li><a href="../cruise/#firstClass">头等舱</a></li>
+									<li><a href="../cruise/#businessClass">商务舱</a></li>
+									<li><a href="../cruise/#economyClass">经济舱</a></li>
+									<li><a href="../cruise/#fishingClass">渔船</a></li>
 									<li class="divider"></li>
 									<form class="navbar-form navbar-left form-inline" role="search">
 										<div class="form-group">
@@ -119,10 +119,10 @@
 					</div>
 					<br>
 					<div class="list-group">
-						<a href="#" class="list-group-item">头等舱</a>
-						<a href="#" class="list-group-item">商务舱</a>
-						<a href="#" class="list-group-item">经济舱</a>
-						<a href="#" class="list-group-item">渔船</a>
+						<a href="#firstClass" class="list-group-item">头等舱</a>
+						<a href="#businessClass" class="list-group-item">商务舱</a>
+						<a href="#economyClass" class="list-group-item">经济舱</a>
+						<a href="#fishingClass" class="list-group-item">渔船</a>
 					</div>
 				</div>
 				<div class="col-md-9">
@@ -154,6 +154,8 @@
 							</div>
 						</div>
 					</div>
+					<!-- first class -->
+					<h3 class="page-header" id="firstClass">头等舱</h3>
 					<div class="row">
 						<div class="col-sm-4 col-lg-4 col-md-4" ng-repeat="cruise in cruises | filter:query">
 							<div class="thumbnail">
@@ -167,6 +169,54 @@
 							</div>
 						</div>
 					</div>
+					<!-- business class -->
+					<h3 class="page-header" id="businessClass">商务舱</h3>
+					<div class="row">
+						<div class="col-sm-4 col-lg-4 col-md-4" ng-repeat="cruise in cruises | filter:query">
+							<div class="thumbnail">
+								<img src="" alt="">
+								<div class="caption">
+									<h4 class="pull-right">{{cruise.price}}</h4>
+									<h4><a href="#">{{cruise.name}}</a>
+									</h4>
+									<p>{{cruise.introduction}}</p>
+								</div>
+							</div>
+						</div>
+					</div>
+					<!-- economy class -->
+					<h3 class="page-header" id="economyClass">经济舱</h3>
+					<div class="row">
+						<div class="col-sm-4 col-lg-4 col-md-4" ng-repeat="cruise in cruises | filter:query">
+							<div class="thumbnail">
+								<img src="" alt="">
+								<div class="caption">
+									<h4 class="pull-right">{{cruise.price}}</h4>
+									<h4><a href="#">{{cruise.name}}</a>
+									</h4>
+									<p>{{cruise.introduction}}</p>
+								</div>
+							</div>
+						</div>
+					</div>
+					<!-- fishing class -->
+					<h3 class="page-header" id="fishingClass">渔船</h3>
+					<div class="row">
+						<div class="col-sm-4 col-lg-4 col-md-4" ng-repeat="cruise in cruises | filter:query">
+							<div class="thumbnail">
+								<img src="" alt="">
+								<div class="caption">
+									<h4 class="pull-right">{{cruise.price}}</h4>
+									<h4><a href="#">{{cruise.name}}</a>
+									</h4>
+									<p>{{cruise.introduction}}</p>
+								</div>
+							</div>
+						</div>
+					</div>
+					<!-- end repeat -->
+
+
 				</div>
 			</div>
 		</div>
