@@ -1,2 +1,1 @@
-# JMS-Cruise
-Web page for JMS-Cruise
+Cloud code project for JMS Cruise. Cloud Code Guide: https://cn.avoscloud.com/docs/cloud_code_guide.html

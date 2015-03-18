@@ -1,0 +1,52 @@
+<div class="container" ng-controller="DashboardCtrl">
+    <div class="row">
+        <div class="col-sm-3">
+            <ul class="nav nav-tabs nav-stacked nav-pills" role="tablist">
+                <li ng-class="{'active': view_tab == 'agent'}">
+                    <a class="btn-lg" ng-click="changeTab('agent')" href="">Agent management</a>
+                </li>
+                <li ng-class="{'active': view_tab == 'cruise'}">
+                    <a class="btn-lg" ng-click="changeTab('cruise')" href="">Cruises</a>
+                </li>
+            </ul>
+        </div>
+        <div class="col-sm-9">
+            <div ng-show="view_tab == 'agent'">
+                This is tab 1 content
+            </div>
+            <div ng-show="view_tab == 'cruise'" ng-controller="CategoryCtrl">
+                <accordion close-others="oneAtATime">
+                    <accordion-group ng-repeat="category in categories | filter:query" is-open="category.open">
+                        <accordion-heading>
+                            <span ng-bind="category.name"></span>
+                            <i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-up': category.open, 'glyphicon-chevron-down': !category.open}"></i>
+                        </accordion-heading>
+                        <div class="row" ng-controller="CruiseCtrl">
+                            <div class="col-sm-3" ng-repeat="cruise in cruises | filter:query" ng-click="editCruise(cruise)">
+                                <div class="thumbnail">
+                                    <img ng-src="{{ cruise.coverImage.url() }}" alt="">
+                                    <div class="caption">
+                                        <h4 class="pull-right">$<span ng-bind="cruise.price"></span></h4>
+                                        <h4><a><span ng-bind="cruise.name"></span></a>
+                                        </h4>
+                                        <p ng-bind="cruise.summary"></p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-3" ng-click="newCruise()">
+                                <div class="thumbnail">
+                                    <img ng-src="http://placehold.it/160&text=New+Cruise" alt="">
+                                    <div class="caption">
+                                        <h4 class="pull-right">$0.00</h4>
+                                        <h4><a>New Cruise</a></h4>
+                                        <p>Click to add new Cruise.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </accordion-group>
+                </accordion>
+            </div>
+        </div>
+    </div>
+</div>

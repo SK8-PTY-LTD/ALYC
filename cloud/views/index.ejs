@@ -1,0 +1,50 @@
+<html ng-app="JMSApp">
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible"content="IE=edge">
+		<meta name="viewport"content="width=device-width, initial-scale=1">
+		<meta name="description"content="JMS Cruise">
+		<meta name="author"content="SK8 PTY LTD">
+		<title>JMS至尊游艇</title>
+		<base href="/">
+		<!-- Latest compiled and minified CSS -->
+		<link rel="stylesheet" href="/lib/bootstrap/css/bootstrap.min.css">
+		<link href="/lib/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+		<link rel="stylesheet" href="/css/jms-base.css">
+		<!-- Custom CSS -->
+		<link rel="icon" type="image/png" href="img/icon.ico">
+	</head>
+	<body ng-controller="AppCtrl">
+		<!-- Navbar and Styling file -->
+		<jms-navbar></jms-navbar>
+		<!-- Body Components -->
+		<div class="container">
+			<div class="row">
+				<div class="col-md-10 col-md-offset-1">
+					<div ng-view="ng-view"></div>
+				</div>
+			</div>
+		</div>
+		<div ng-if="false">
+			<!-- Scripts -->
+			<script src="https://leancloud.cn/scripts/lib/av-0.5.0.min.js"></script>
+			<script src="lib/JMS/jms.js"></script>
+			<script src="https://maps.googleapis.com/maps/api/js"></script>
+			<script src="js/jms-base.js"></script>
+			<!-- AngularJS -->
+			<script src="lib/angular/angular.min.js"></script>
+			<script src="lib/angular/ui-bootstrap-tpls-0.12.1.min.js"></script>
+			<script src="lib/angular/angular-route.min.js"></script>
+			<script src="lib/angular/angular-scroll.min.js"></script>
+			<script src="lib/angular/angular-file-upload-shim.min.js"></script>
+			<script src="lib/angular/angular-file-upload.min.js"></script>
+			<!-- Controller -->
+			<script src="js/app.js"></script>
+			<script src="js/services.js"></script>
+			<script src="js/controllers.js"></script>
+			<script src="js/filters.js"></script>
+			<script src="js/directives.js"></script>
+		</div>
+	</body>
+	<jms-footer></jms-footer>
+</html>

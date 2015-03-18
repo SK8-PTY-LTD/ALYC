@@ -1,0 +1,100 @@
+<div class="modal-header">
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col-md-6">
+				<h1>Preview</h1>
+			</div>
+			<div class="col-md-6">
+				<h1>Edit</h1>
+			</div>
+		</div>
+	</div>
+</div>
+<div class="modal-body">
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col-md-6">
+				<div class="thumbnail">
+					<div ng-file-drop ng-file-select ng-file-change="uploadCoverImage($files)" class="drop-box"
+						drag-over-class="dragover" ng-multiple="false" allow-dir="true"
+						accept="image/*,application/pdf">
+						<img ng-src="{{ cruise.coverImage.url() }}" ng-if="cruise.coverImage"alt="">
+						<img src="https://placehold.it/320&text=Cover+image+here." ng-if="!cruise.coverImage" alt="">
+						<progressbar class="progress-striped active" value="100" type="success" ng-show="isLoading"><span ng-bind="promote"></span></progressbar>
+					</div>
+					<div ng-no-file-drop>File Drag/Drop is not supported for this browser</div>
+					<div class="caption">
+						<h4 class="pull-right" ng-show="!cruise.agentPrice">$<span ng-bind="cruise.price"></span></h4>
+						<del class="pull-right" ng-show="cruise.agentPrice">Normal: $<span ng-bind="cruise.price"></span>/h</del>
+						<h4 class="pull-right" ng-show="cruise.agentPrice">Agent: $<span ng-bind="cruise.agentPrice"></span>/h</h4>
+						<h4><span ng-bind="cruise.name">cruise name</span></h4>
+						<em ng-bind="cruise.category.name"></em>
+						<p><span ng-bind="cruise.summary"></span></p>
+					</div>
+				</div>
+			</div>
+			<div class="col-md-6">
+				<form>
+					<div class="form-group col-md-12">
+						<label>Name</label>
+						<input class="form-control" placeholder="How do you want to name it?" ng-model="cruise.name">
+					</div>
+					<div class="form-group col-md-6">
+						<label>Price</label>
+						<div class="input-group">
+							<span class="input-group-addon">$</span>
+							<input type="text" class="form-control" placeholder="How much are you charging it?" ng-model="cruise.price" valid-number>
+							<span class="input-group-addon">/hour</span>
+						</div>
+					</div>
+					<div class="form-group col-md-6">
+						<label>Agent Price</label>
+						<div class="input-group">
+							<span class="input-group-addon">$</span>
+							<input type="text" class="form-control" placeholder="How much are you charging it?" ng-model="cruise.agentPrice" valid-number>
+							<span class="input-group-addon">/hour</span>
+						</div>
+					</div>
+					<div class="form-group col-md-6">
+						<label>Minimum Hour</label>
+						<div class="input-group">
+							<span class="input-group-btn">
+								<button class="btn btn-default glyphicon glyphicon-minus" type="button" ng-click="cruise.minimumHour = cruise.minimumHour - 1"></button>
+							</span>
+							<input type="text" class="form-control" placeholder="How many do you have?" ng-model="cruise.minimumHour" valid-number>
+							<span class="input-group-btn">
+								<button class="btn btn-default glyphicon glyphicon-plus" type="button" ng-click="cruise.minimumHour = cruise.minimumHour + 1"></button>
+							</span>
+						</div>
+					</div>
+					<div class="form-group col-md-12">
+						<label>Summary</label>
+						<em class="pull-right" ng-bind="140 - cruise.summary.length">140</em>
+						<textarea class="form-control" rows="3"  maxlength="140" placeholder="A short summary for the cruise." ng-model="cruise.summary"></textarea>
+					</div>
+					<div class="form-group col-md-12">
+						<label>Other Images</label><br>
+						<div ng-repeat="imageFile in cruise.imageArray">
+							<div class="drop-box-small col-md-3" ng-really-message="Delete this image?" ng-really-click="deleteImageFile(imageFile)">
+								<img ng-src="{{ imageFile.thumbnailURL(83, 83) }}" alt="">
+							</div>
+						</div>
+						<div ng-file-drop ng-file-select ng-file-change="uploadCruiseImage($files)" class="drop-box-small col-md-3"
+							drag-over-class="dragover" ng-multiple="true" allow-dir="true"
+							accept="image/*" ng-show="!cruise.imageArray || cruise.imageArray.length < 3">
+							<img  ng-src="https://placehold.it/83&text=Add" alt="">
+						<progressbar class="progress-striped active" value="100" type="success" ng-show="isUploading">Uploading image</progressbar>
+					</div>
+				</div>
+				<div class="form-group pull-right">
+					<button class="btn btn-danger" ng-really-message="Are you sure you want to permanently delete this? There's no undo to this!" ng-really-click="delete()">Delete</button>
+					<button class="btn btn-default" ng-click="resetQuantity()">Clear Inventory</button>
+					<button class="btn btn-primary" ng-click="save()">Save</button>
+				</div>
+			</form>
+		</div>
+	</div>
+</div>
+</div>
+<div class="modal-footer">
+</div>
