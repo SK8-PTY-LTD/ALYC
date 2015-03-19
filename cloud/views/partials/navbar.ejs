@@ -20,10 +20,10 @@
         <!-- Single button -->
         <li class="btn-group"dropdown is-open="status.isHomeOpen" ng-class="{ active: isActive('/cn/cruise') }">
           <a type="button" class="dropdown-toggle"dropdown-toggle ng-disabled="disabled">
-            游轮 <span class="caret"></span>
+            游艇 <span class="caret"></span>
           </a>
-          <ul class="dropdown-menu"role="menu">
-            <li ng-repeat="category in categories"><a ng-href="/cn/cruise/#{{ category.name }}" du-smooth-scroll du-scrollspy offset="50"><span ng-bind="category.name"></span></a></li>
+          <ul class="dropdown-menu" role="menu" ng-controller="CategoryCtrl">
+            <li ng-repeat="category in categories"><a ng-href="/cn/cruise/#{{ category.tag }}" du-smooth-scroll du-scrollspy offset="80"><span ng-bind="category.name"></span></a></li>
           </ul>
         </li>
         <li ng-class="{ active: isActive('/cn/gallery') }">

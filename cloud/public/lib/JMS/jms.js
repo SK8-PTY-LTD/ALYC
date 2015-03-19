@@ -81,6 +81,15 @@
 		}
 	});
 
+	Object.defineProperty(JMS.Category.prototype, "tag", {
+		get: function() {
+			return this.get("tag");
+		},
+		set: function(value) {
+			this.set("tag", value);
+		}
+	});
+
 	Object.defineProperty(JMS.Cruise.prototype, "agentPriceInCent", {
 		get: function() {
 			return this.get("agentPriceInCent");
@@ -96,6 +105,15 @@
 		},
 		set: function(value) {
 			this.set("category", value);
+		}
+	});
+
+	Object.defineProperty(JMS.Cruise.prototype, "capacity", {
+		get: function() {
+			return this.get("capacity");
+		},
+		set: function(value) {
+			this.set("capacity", parseInt(value));
 		}
 	});
 
@@ -145,7 +163,7 @@
 			return this.get("minimumHour");
 		},
 		set: function(value) {
-			this.set("minimumHour", value);
+			this.set("minimumHour", parseInt(value));
 		}
 	});
 

@@ -24,7 +24,7 @@ JMSApp.controller("NavCtrl", function($scope, $rootScope, $modal, $location) {
   $scope.logOut = function() {
     JMS.User.logOut();
     // Do stuff after successful login.
-    $rootScope.currentUser = new JMS.User();
+    $rootScope.currentUser = undefined;
   }
   $scope.openWeChat = function() {
     var modalInstance = $modal.open({
@@ -38,6 +38,21 @@ JMSApp.controller("NavCtrl", function($scope, $rootScope, $modal, $location) {
         $rootScope.currentUser = user;
       }
     });
+  }
+});
+JMSApp.controller('HomeController', function($scope){
+  $scope.myInterval = 5000;
+  var slides = $scope.slides = [];
+  $scope.addSlide = function() {
+    var newWidth = 600 + slides.length + 1;
+    slides.push({
+      image: 'http://placekitten.com/' + newWidth + '/300',
+      text: ['More','Extra','Lots of','Surplus'][slides.length % 4] + ' ' +
+        ['Cats', 'Kittys', 'Felines', 'Cutes'][slides.length % 4]
+    });
+  };
+  for (var i=0; i<4; i++) {
+    $scope.addSlide();
   }
 });
 JMSApp.controller('LoginCtrl', function($scope, $modalInstance) {
@@ -78,6 +93,7 @@ JMSApp.controller('LoginCtrl', function($scope, $modalInstance) {
   }
 });
 JMSApp.controller("DashboardCtrl", function($scope, $location) {
+  $scope.view_tab = 'cruise';
   $scope.$watch('currentUser', function(newVal, oldVal) {
     if ($scope.currentShop != undefined) {
       $scope.authorize($scope.currentUser);
@@ -109,6 +125,7 @@ JMSApp.controller("DashboardCtrl", function($scope, $location) {
 });
 JMSApp.controller("CategoryCtrl", function($scope) {
     var query = new AV.Query(JMS.Category);
+    query.ascending("createdAt");
     query.find({
       success: function(categories) {
         $scope.$apply(function() {
@@ -124,7 +141,9 @@ JMSApp.controller("CruiseCtrl", function($scope, $modal) {
     query.include("imageArray");
     query.find({
       success: function(results) {
-        $scope.cruises = results;
+        $scope.$apply(function() {
+          $scope.cruises = results;
+        });
       },
       error: function(error) {
         alert("Error: " + error.code + " " + error.message);
@@ -137,11 +156,12 @@ JMSApp.controller("CruiseCtrl", function($scope, $modal) {
     cruise.price = 0
     cruise.agentPrice = 0
     cruise.category = $scope.category;
+    cruise.minimumHour = 4;
     $scope.editCruise(cruise);
   }
   $scope.editCruise = function(cruise) {
     var modalInstance = $modal.open({
-      templateUrl: 'partials/modal_cruise',
+      templateUrl: 'partials/modal_edit_cruise.ejs',
       controller: 'NewCruiseController',
       size: 'lg',
       resolve: {
@@ -152,6 +172,18 @@ JMSApp.controller("CruiseCtrl", function($scope, $modal) {
     });
     modalInstance.result.then(function() {
       $scope.reloadCruise($scope.category);
+    });
+  }
+  $scope.viewCruise = function(cruise) {
+    var modalInstance = $modal.open({
+      templateUrl: 'partials/modal_cruise.ejs',
+      controller: 'ViewCruiseController',
+      size: 'lg',
+      resolve: {
+        cruise: function() {
+          return cruise;
+        }
+      }
     });
   }
   $scope.$watch('category', function(newVal, oldVal) {
@@ -236,7 +268,7 @@ JMSApp.controller("NewCruiseController", function($scope, $modalInstance, cruise
     cruise.save(null, {
       success: function(cruise) {
         // Execute any logic that should take place after the object is saved.
-        alert(cruise.name + "had been added, good luck sailing!");
+        alert(cruise.name + " had been added, good luck sailing!");
         $modalInstance.close();
       },
       error: function(cruise, error) {
@@ -263,4 +295,19 @@ JMSApp.controller("NewCruiseController", function($scope, $modalInstance, cruise
     alert("Cruise had been deleted. It will disappear upon page refresh.");
   }
 
+});
+JMSApp.controller('ViewCruiseController', function($scope){
+  $scope.myInterval = 5000;
+  var slides = $scope.slides = [];
+  $scope.addSlide = function() {
+    var newWidth = 600 + slides.length + 1;
+    slides.push({
+      image: 'http://placekitten.com/' + newWidth + '/300',
+      text: ['More','Extra','Lots of','Surplus'][slides.length % 4] + ' ' +
+        ['Cats', 'Kittys', 'Felines', 'Cutes'][slides.length % 4]
+    });
+  };
+  for (var i=0; i<4; i++) {
+    $scope.addSlide();
+  }
 });

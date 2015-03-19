@@ -3,10 +3,10 @@
         <div class="col-sm-3">
             <ul class="nav nav-tabs nav-stacked nav-pills" role="tablist">
                 <li ng-class="{'active': view_tab == 'agent'}">
-                    <a class="btn-lg" ng-click="changeTab('agent')" href="">Agent management</a>
+                    <a class="btn-lg" ng-click="changeTab('agent')" href="">会员管理</a>
                 </li>
                 <li ng-class="{'active': view_tab == 'cruise'}">
-                    <a class="btn-lg" ng-click="changeTab('cruise')" href="">Cruises</a>
+                    <a class="btn-lg" ng-click="changeTab('cruise')" href="">游艇管理</a>
                 </li>
             </ul>
         </div>
@@ -16,7 +16,7 @@
             </div>
             <div ng-show="view_tab == 'cruise'" ng-controller="CategoryCtrl">
                 <accordion close-others="oneAtATime">
-                    <accordion-group ng-repeat="category in categories | filter:query" is-open="category.open">
+                    <accordion-group ng-repeat="category in categories | filter:query" is-open="true">
                         <accordion-heading>
                             <span ng-bind="category.name"></span>
                             <i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-up': category.open, 'glyphicon-chevron-down': !category.open}"></i>
