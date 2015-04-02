@@ -1,0 +1,74 @@
+<div class="modal-header">
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col-md-6">
+				<h1>预览</h1>
+			</div>
+			<div class="col-md-6">
+				<h1>咨询</h1>
+			</div>
+		</div>
+	</div>
+</div>
+<div class="modal-body">
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col-md-6">
+				<div class="thumbnail">
+					<div class="row carousel-holder">
+						<div class="col-md-12">
+							<div>
+								<div style="height: 280px">
+									<carousel interval="5000">
+									<slide ng-repeat="slide in slides" active="slide.active">
+									<img ng-src="{{ slide.image }}" class="img-responsive">
+									</slide>
+									</carousel>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div ng-no-file-drop>File Drag/Drop is not supported for this browser</div>
+					<div class="caption">
+						<h3><span ng-bind="cruise.name">cruise name</span></h3>
+						<em ng-bind="cruise.category.name"></em>
+						<p><span ng-bind="cruise.summary"></span></p><br>
+						<h4 ng-show="!cruise.agentPrice || cruise.agentPrice == 0 || currentUser == undefined">$<span ng-bind="cruise.price"></span>/小时</h4>
+						<del ng-show="cruise.agentPrice && cruise.agentPrice != 0 && currentUser != undefined">原价: $<span ng-bind="cruise.price"></span>/小时</del>
+						<h4 ng-show="cruise.agentPrice && cruise.agentPrice != 0 && currentUser != undefined">会员: $<span ng-bind="cruise.agentPrice"></span>/小时</h4>
+					</div>
+				</div>
+			</div>
+			<div class="col-md-6">
+				<form name="contactForm">
+					<div class="form-group">
+						<label for="InputFullName">游艇</label>
+						<input class="form-control" value="{{ cruise.name }}" disabled>
+					</div>
+					<div class="form-group">
+						<label for="InputFullName">姓名*</label>
+						<input class="form-control" ng-model="enquiry.name" placeholder="John Smith" required>
+					</div>
+					<div class="form-group has-feedback">
+						<label class="control-label">电子邮箱*</label>
+						<span ng-show="contactForm.email.$valid" class="glyphicon glyphicon-ok form-control-feedback"></span>
+						<input type="email" name="email" class="form-control" ng-model="enquiry.email" placeholder="john.smith@gmail.com" required>
+					</div>
+					<div class="form-group">
+						<label for="InputPhoneNumber">联系电话*</label>
+						<input class="form-control" ng-model="enquiry.phone" placeholder="04xxxxxxxx">
+					</div>
+					<div class="form-group">
+						<label for="InputContent">联系我们</label>
+						<textarea class="form-control" rows="5" ng-model="enquiry.content" placeholder="我想要预定..." required></textarea>
+					</div>
+					<div>
+						<button class="btn btn-primary pull-right" ng-click="submit()">提交</button>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+</div>
+<div class="modal-footer">
+</div>
