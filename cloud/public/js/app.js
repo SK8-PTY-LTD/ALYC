@@ -40,8 +40,20 @@ JMSApp.config(function($routeProvider, $locationProvider, $httpProvider) {
   when('/cn/contact', {
     templateUrl: 'partials/contact',
   }).
+  when('/cn/wedding', {
+    templateUrl: 'partials/wedding',
+  }).
+  when('/cn/business', {
+    templateUrl: 'partials/business',
+  }).
+  when('/cn/casual', {
+    templateUrl: 'partials/casual',
+  }).
+  when('/cn/fishing', {
+    templateUrl: 'partials/fishing',
+  }).
   otherwise({
-    redirectTo: '/'
+    redirectTo: '/cn/home'
   });
 
   $locationProvider.html5Mode(true);

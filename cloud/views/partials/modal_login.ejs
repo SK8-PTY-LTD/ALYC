@@ -13,7 +13,7 @@
 		</div>
 		<div class="form-group has-feedback">
 			<label class="control-label">密码:</label>
-			<label class="control-label pull-right"><a ng-click="resetPassword()">Forgot?</a></label>
+			<label class="control-label pull-right"><a ng-click="resetPassword()">忘记密码?</a></label>
 			<span ng-show="!loginForm.password.$valid" class="glyphicon glyphicon-warning-sign form-control-feedback"></span>
 			<span ng-show="loginForm.password.$valid" class="glyphicon glyphicon-ok form-control-feedback"></span>
 			<input type="password" name="password" class="form-control" id="password" ng-model="currentUser.password" placeholder="At least 8 characters long" ng-minlength="8" required>

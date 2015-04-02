@@ -1,27 +1,81 @@
 <!-- Page Content -->
-<div class="row" ng-controller="HomeController">
-	<div class="col-md-4">
-		<p class="col-md-12">至尊遊艇會是悉尼第一家華人頂級豪華遊艇租賃及活動策劃代理公司。我們專注于全澳各地給想要乘坐遊艇遊覽悉尼港的顧客提供一個完全不一樣的特殊體驗和五星級的服務。<br><br></p>
-		<img src="http://placehold.it/160x80" class="col-md-6 col-md-offset-3">
-		<p class="col-md-12"><br><br>一个整天, 或是短期停留,公司或私人派對，时间由您选择,至尊遊艇會为您提供一个绝妙的假期。在悉尼, 我们有60多艘配有乘务员的船只, 包括长12到140多米的大型游艇和面積達到350平方米的大型活動船隻。我們每一艘遊艇都是這世界上獨一無二的。 您可以根據不同預算从中选择, 来度过您独特的假期或者舉辦婚禮，生日聚會，企業年會和商務會談……等。</p>
-	</div>
-	<div class="col-md-8">
-      <div class="row carousel-holder">
-        <div class="col-md-12">
-          <div>
-            <div style="height: 360px">
-              <carousel interval="myInterval">
-              <slide ng-repeat="slide in slides" active="slide.active">
-              <img ng-src="{{slide.image}}" style="margin:auto;">
-              <div class="carousel-caption">
-                <h4>Slide {{$index}}</h4>
-                <p>{{slide.text}}</p>
-              </div>
-              </slide>
-              </carousel>
-            </div>
-          </div>
-        </div>
-      </div>
-	</div>
+<div class="row">
+  <div class="col-md-6">
+    <h4 class="col-md-12">至尊遊艇會是悉尼第一家華人頂級豪華遊艇租賃及活動策劃代理公司。我們專注于全澳各地給想要乘坐遊艇遊覽悉尼港的顧客提供一個完全不一樣的特殊體驗和五星級的服務。<br><br></h4>
+    <img src="/img/logo_1.png" class="col-md-6 col-md-offset-3">
+    <p class="col-md-12"><br><br>一个整天, 或是短期停留,公司或私人派對，时间由您选择,至尊遊艇會为您提供一个绝妙的假期。在悉尼, 我们有60多艘配有乘务员的船只, 包括长12到140多米的大型游艇和面積達到350平方米的大型活動船隻。我們每一艘遊艇都是這世界上獨一無二的。 您可以根據不同預算从中选择, 来度过您独特的假期或者舉辦婚禮，生日聚會，企業年會和商務會談……等。</p>
+  </div>
+  <div class="col-md-6" ng-controller="AdsCtrl">
+    <div style="height: 400px">
+      <carousel interval="5000">
+      <slide ng-repeat="slide in slides" active="slide.active">
+      <img ng-src="{{ slide.image }}" class="img-responsive">
+      </slide>
+      </carousel>
+    </div>
+  </div>
 </div>
+<h1>豪华游艇</h1>
+<div class="row" ng-controller="HomeCtrl">
+  <div class="col-md-12" ng-repeat="cruise in cruises | filter:query">
+    <div class="row" ng-click="viewCruise(cruise)">
+      <div class="col-md-3" bg-color="black">
+        <a><img ng-src="{{ cruise.coverImage.thumbnailURL(280,210) }}" alt=""></a>
+      </div>
+      <div class="col-md-9" bg-color="black">
+        <h3><a ng-bind="cruise.name"></a></h3>
+        <p ng-bind="cruise.summary"></p>
+        <button class="btn btn-default">了解更多</button>
+      </div>
+    </div>
+  </div>
+</div>
+<h1>我们的服务</h1>
+
+  <div class="row">
+    <div class="col-md-3" bg-color="black">
+      <a href="cn/wedding"><img src="http://www.placehold.it/280x210"></a>
+    </div>
+    <div class="col-md-9" bg-color="black">
+      <h3><a href="cn/wedding">婚礼策划</a></h3>
+      <p>这是一段细节文字，可以修改后重新加入。这是一段细节文字，可以修改后重新加入。这是一段细节文字，可以修改后重新加入。这是一段细节文字，可以修改后重新加入。这是一段细节文字，可以修改后重新加入。</p>
+      <p>这是一段细节文字，可以修改后重新加入。这是一段细节文字，可以修改后重新加入。这是一段细节文字，可以修改后重新加入。这是一段细节文字，可以修改后重新加入。这是一段细节文字，可以修改后重新加入。</p>
+      <button class="btn btn-default"><a href="cn/wedding">了解更多</a></button>
+    </div>
+  </div>
+  <br>
+  <div class="row">
+    <div class="col-md-3" bg-color="black">
+      <a href="cn/business"><img src="http://www.placehold.it/280x210"></a>
+    </div>
+    <div class="col-md-9" bg-color="black">
+      <h3><a href="cn/business">商业活动</a></h3>
+      <p>这是一段细节文字，可以修改后重新加入。这是一段细节文字，可以修改后重新加入。这是一段细节文字，可以修改后重新加入。这是一段细节文字，可以修改后重新加入。这是一段细节文字，可以修改后重新加入。</p>
+      <p>这是一段细节文字，可以修改后重新加入。这是一段细节文字，可以修改后重新加入。这是一段细节文字，可以修改后重新加入。这是一段细节文字，可以修改后重新加入。这是一段细节文字，可以修改后重新加入。</p>
+      <button class="btn btn-default"><a href="cn/business">了解更多</a></button>
+    </div>
+  </div>
+  <br>
+  <div class="row">
+    <div class="col-md-3" bg-color="black">
+      <a href="cn/casual"><img src="http://www.placehold.it/280x210"></a>
+    </div>
+    <div class="col-md-9" bg-color="black">
+      <h3><a href="cn/casual">休闲娱乐</a></h3>
+      <p>这是一段细节文字，可以修改后重新加入。这是一段细节文字，可以修改后重新加入。这是一段细节文字，可以修改后重新加入。这是一段细节文字，可以修改后重新加入。这是一段细节文字，可以修改后重新加入。</p>
+      <p>这是一段细节文字，可以修改后重新加入。这是一段细节文字，可以修改后重新加入。这是一段细节文字，可以修改后重新加入。这是一段细节文字，可以修改后重新加入。这是一段细节文字，可以修改后重新加入。</p>
+      <button class="btn btn-default"><a href="cn/casual">了解更多</a></button>
+    </div>
+  </div>
+  <br>
+  <div class="row">
+    <div class="col-md-3" bg-color="black">
+      <a href="cn/fishing"><img src="http://www.placehold.it/280x210"></a>
+    </div>
+    <div class="col-md-9" bg-color="black">
+      <h3><a href="cn/fishing">深海垂钓</a></h3>
+      <p>这是一段细节文字，可以修改后重新加入。这是一段细节文字，可以修改后重新加入。这是一段细节文字，可以修改后重新加入。这是一段细节文字，可以修改后重新加入。这是一段细节文字，可以修改后重新加入。</p>
+      <p>这是一段细节文字，可以修改后重新加入。这是一段细节文字，可以修改后重新加入。这是一段细节文字，可以修改后重新加入。这是一段细节文字，可以修改后重新加入。这是一段细节文字，可以修改后重新加入。</p>
+      <button class="btn btn-default"><a href="cn/fishing">了解更多</a></button>
+    </div>
+  </div>

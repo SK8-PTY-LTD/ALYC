@@ -1,8 +1,6 @@
 'use strict';
 /* Controllers */
-JMSApp.controller('AppCtrl', function($scope, $http) {
-
-});
+JMSApp.controller('AppCtrl', function($scope, $http) {});
 JMSApp.controller("NavCtrl", function($scope, $rootScope, $modal, $location) {
   $rootScope.currentUser = JMS.User.current();
   $scope.isActive = function(viewLocation) {
@@ -40,19 +38,29 @@ JMSApp.controller("NavCtrl", function($scope, $rootScope, $modal, $location) {
     });
   }
 });
-JMSApp.controller('HomeController', function($scope){
-  $scope.myInterval = 5000;
-  var slides = $scope.slides = [];
-  $scope.addSlide = function() {
-    var newWidth = 600 + slides.length + 1;
-    slides.push({
-      image: 'http://placekitten.com/' + newWidth + '/300',
-      text: ['More','Extra','Lots of','Surplus'][slides.length % 4] + ' ' +
-        ['Cats', 'Kittys', 'Felines', 'Cutes'][slides.length % 4]
+JMSApp.controller('HomeCtrl', function($scope, $modal) {
+  var category = new JMS.Category();
+  category.id = "550b6ffde4b03b1913106cdb";
+  var query = new AV.Query(JMS.Cruise);
+  query.equalTo("category", category);
+  query.include("imageArray");
+  query.find().then(function(results) {
+    $scope.$apply(function() {
+      console.log(results.length);
+      $scope.cruises = results;
     });
-  };
-  for (var i=0; i<4; i++) {
-    $scope.addSlide();
+  });
+  $scope.viewCruise = function(cruise) {
+    var modalInstance = $modal.open({
+      templateUrl: 'partials/modal_cruise.ejs',
+      controller: 'ViewCruiseController',
+      size: 'lg',
+      resolve: {
+        cruise: function() {
+          return cruise;
+        }
+      }
+    });
   }
 });
 JMSApp.controller('LoginCtrl', function($scope, $modalInstance) {
@@ -100,7 +108,7 @@ JMSApp.controller("DashboardCtrl", function($scope, $location) {
     }
   }, true);
   $scope.authorize = function(user) {
-    if (user == undefined ) {
+    if (user == undefined) {
       //Authorization failed, redirect.
       $location.path('/');
       $location.replace();
@@ -124,15 +132,15 @@ JMSApp.controller("DashboardCtrl", function($scope, $location) {
   $scope.authorize($scope.currentUser);
 });
 JMSApp.controller("CategoryCtrl", function($scope) {
-    var query = new AV.Query(JMS.Category);
-    query.ascending("createdAt");
-    query.find({
-      success: function(categories) {
-        $scope.$apply(function() {
-          $scope.categories = categories;
-        });
-      }
-    });
+  var query = new AV.Query(JMS.Category);
+  query.ascending("createdAt");
+  query.find({
+    success: function(categories) {
+      $scope.$apply(function() {
+        $scope.categories = categories;
+      });
+    }
+  });
 });
 JMSApp.controller("CruiseCtrl", function($scope, $modal) {
   $scope.reloadCruise = function(category) {
@@ -202,7 +210,6 @@ JMSApp.controller("NewCruiseController", function($scope, $modalInstance, cruise
     $modalInstance.close();
   }
   $scope.cruise = cruise;
-
   $scope.uploadCoverImage = function(files) {
     var file = files[0];
     if (file) {
@@ -234,12 +241,10 @@ JMSApp.controller("NewCruiseController", function($scope, $modalInstance, cruise
       });
     }
   };
-
   $scope.deleteImageFile = function(imageFile) {
     cruise.remove("imageArray", imageFile);
     imageFile.destroy();
   };
-
   $scope.uploadCruiseImage = function(files) {
     var file = files[0];
     if (file) {
@@ -263,7 +268,6 @@ JMSApp.controller("NewCruiseController", function($scope, $modalInstance, cruise
       });
     }
   };
-
   $scope.save = function() {
     cruise.save(null, {
       success: function(cruise) {
@@ -278,7 +282,6 @@ JMSApp.controller("NewCruiseController", function($scope, $modalInstance, cruise
       }
     });
   }
-
   $scope.delete = function() {
     var array = cruise.imageArray;
     for (var i = 0; i < array.length; i++) {
@@ -294,20 +297,97 @@ JMSApp.controller("NewCruiseController", function($scope, $modalInstance, cruise
     $modalInstance.close();
     alert("Cruise had been deleted. It will disappear upon page refresh.");
   }
-
 });
-JMSApp.controller('ViewCruiseController', function($scope){
-  $scope.myInterval = 5000;
+JMSApp.controller('ViewCruiseController', function($scope, cruise) {
+  $scope.cruise = cruise;
   var slides = $scope.slides = [];
-  $scope.addSlide = function() {
+  for (var i = 0; i < cruise.imageArray.length; i++) {
+    var avFile = cruise.imageArray[i];
     var newWidth = 600 + slides.length + 1;
     slides.push({
-      image: 'http://placekitten.com/' + newWidth + '/300',
-      text: ['More','Extra','Lots of','Surplus'][slides.length % 4] + ' ' +
-        ['Cats', 'Kittys', 'Felines', 'Cutes'][slides.length % 4]
+      image: avFile.thumbnailURL(360, 240)
     });
+  }
+  $scope.submit = function() {
+    $scope.enquiry.subject = "Cruise Enquiry";
+    $scope.enquiry.receiver = "133342301@163.com";
+    AV.Cloud.run('sendEmail', $scope.enquiry);
+    alert("Thank you for your enquiry. We will get back to you soon!");
+  }
+});
+JMSApp.controller('AdsCtrl', function($scope) {
+  var category = new JMS.Category();
+  category.id = "54fd999be4b0447de160ab23";
+  var query = new AV.Query(JMS.Cruise);
+  query.equalTo("category", category);
+  query.find().then(function(results) {
+    var slides = $scope.slides = [];
+    for (var i = 0; i < results.length; i++) {
+      var image = results[i].coverImage;
+      var newWidth = 600 + slides.length + 1;
+      slides.push({
+        image: image.url()
+      });
+    }
+  });
+});
+JMSApp.controller("GalleryCtrl", function($scope) {
+  var Photo = AV.Object.extend("Photo");
+  var name = "photo.jpg";
+  $scope.deleteImageFile = function(photo) {
+    photo.get("file").destroy();
+    photo.destroy();
+    $scope.reloadPhotos();
   };
-  for (var i=0; i<4; i++) {
-    $scope.addSlide();
+  $scope.uploadPhoto = function(files) {
+    var file = files[0];
+    if (file) {
+      $scope.isUploading = true;
+      var type = file.type;
+      if (type.indexOf('image/') !== 0) {
+        alert("Image needs to be an image!");
+        return;
+      }
+      //Upload file
+      var avFile = new AV.File(name, file);
+      avFile.save().then(function() {
+        var photo = new Photo();
+        photo.set("file", avFile);
+        photo.set("name", name);
+        photo.save().then(function() {
+          $scope.isUploading = false;
+          $scope.reloadPhotos();
+        });
+      });
+    }
+  };
+  $scope.reloadPhotos = function() {
+    var query = new AV.Query(Photo);
+    query.equalTo("name", name);
+    query.include("file");
+    query.find().then(function(results) {
+      $scope.$apply(function() {
+        $scope.photos = results;
+      });
+    });
+  }
+  $scope.photos = [];
+  $scope.reloadPhotos();
+});
+JMSApp.controller('ServiceCtrl', function($scope) {
+  $scope.services = [{
+    name: '婚礼策划'
+  }, {
+    name: '商业活动'
+  }, {
+    name: '休闲娱乐'
+  }, {
+    name: '深海垂钓'
+  }];
+  $scope.submit = function(service) {
+    $scope.enquiry.subject = service + " Enquiry";
+    $scope.enquiry.receiver = "133342301@163.com";
+    AV.Cloud.run('sendEmail', $scope.enquiry);
+    alert("Thank you for your enquiry. We will get back to you soon!");
   }
 });

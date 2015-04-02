@@ -14,9 +14,6 @@
         <li ng-class="{ active: isActive('/cn/home') }">
           <a ng-href="/cn/home">主页</a>
         </li>
-        <li ng-class="{ active: isActive('/cn/service') }">
-          <a ng-href="/cn/service">服务</a>
-        </li>
         <!-- Single button -->
         <li class="btn-group"dropdown is-open="status.isHomeOpen" ng-class="{ active: isActive('/cn/cruise') }">
           <a type="button" class="dropdown-toggle"dropdown-toggle ng-disabled="disabled">
@@ -25,6 +22,9 @@
           <ul class="dropdown-menu" role="menu" ng-controller="CategoryCtrl">
             <li ng-repeat="category in categories"><a ng-href="/cn/cruise/#{{ category.tag }}" du-smooth-scroll du-scrollspy offset="80"><span ng-bind="category.name"></span></a></li>
           </ul>
+        </li>
+        <li ng-class="{ active: isActive('/cn/service') }">
+          <a ng-href="/cn/service">服务</a>
         </li>
         <li ng-class="{ active: isActive('/cn/gallery') }">
           <a ng-href="/cn/gallery">相册</a>
