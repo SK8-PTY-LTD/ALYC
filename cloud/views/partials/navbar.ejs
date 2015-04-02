@@ -2,12 +2,12 @@
   <div class="container">
     <div class="navbar-header">
       <button type="button" class="navbar-toggle" ng-init="navCollapsed = true" ng-click="navCollapsed = !navCollapsed">
-      <span class="sr-only">Toggle navigation</span>
-      <span class="icon-bar"></span>
-      <span class="icon-bar"></span>
-      <span class="icon-bar"></span>
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="/cn/"><img ng-src="/img/logo.png"alt=""></a>
+      <a class="navbar-brand" href="/cn/"><img ng-src="/img/logo.png" alt=""></a>
     </div>
     <div class="collapse navbar-collapse" collapse="navCollapsed">
       <ul class="nav navbar-nav navbar-right">
@@ -39,7 +39,7 @@
           <a ng-href="/dashboard">控制台</a>
         </li>
         <li ng-show="currentUser.profileName">
-            <a ng-bind="currentUser.profileName"></a>
+          <a ng-bind="currentUser.profileName"></a>
         </li>
         <li>
           <a ng-click="logOut()" ng-show="currentUser.id">退出登录</a>
@@ -51,3 +51,4 @@
     </div>
   </div>
 </nav>
+

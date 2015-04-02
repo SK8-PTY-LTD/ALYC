@@ -91,7 +91,7 @@ ul.social-buttons li a i:hover, ul.social-buttons li a i:focus, ul.social-button
 .modal-sm .control-label {
   color: white;
 }
-//Drag to upload
+/*Drag to upload*/
 .drop-box {
     background: #F8F8F8;
     border: 5px dashed #DDD;
@@ -109,4 +109,47 @@ ul.social-buttons li a i:hover, ul.social-buttons li a i:focus, ul.social-button
 }
 .dragover {
     border: 5px dashed #052B73;
+}
+
+/*Inline thumbnails*/
+.inline-thm {
+    margin-left:5px;
+    margin-top: 25px;
+    margin-right: 190px;
+
+}
+
+.logo-img{
+    display: block;
+    margin-left: auto;
+    margin-right: auto
+}
+
+/*Add title background's padding*/
+.main-page-title{
+    border-radius: 10px;
+    background-color: #D3EDF1;
+    padding-top: 10px;
+    padding-left: 40px;
+    padding-right: 40px;
+    margin-top: 100px;
+    margin-bottom: 70px;
+    height: 60px;
+    text-align: center;
+
+}
+
+/*For Collage*/
+.Collage{
+    padding:10px;
+}
+
+.Collage img{
+
+    /* ensures padding at the bottom of the image is correct */
+    vertical-align:bottom;
+
+    /* hide the images until the plugin has run. the plugin will reveal the images*/
+    opacity:0;
+
 }

@@ -12,4 +12,19 @@
 			</div>
 		</div>
 	</div>
+
+	<div ng-controller="GalleryCtrl">
+		<div class="Collage">
+			<div ng-repeat="photo in photos">
+				<img Collage ng-src="{{ photo.get('file').url() }}" alt="">
+			</div>
+
+		</div>
+	</div>
+
 </div>
+
+<script>
+	$('.Collage').removeWhitespace().collagePlus();
+
+</script>
