@@ -144,12 +144,9 @@ ul.social-buttons li a i:hover, ul.social-buttons li a i:focus, ul.social-button
     padding:10px;
 }
 
-.Collage img{
+.Collage-img{
 
     /* ensures padding at the bottom of the image is correct */
     vertical-align:bottom;
-
-    /* hide the images until the plugin has run. the plugin will reveal the images*/
-    opacity:0;
 
 }
