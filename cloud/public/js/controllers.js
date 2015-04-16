@@ -39,30 +39,42 @@ JMSApp.controller("NavCtrl", function($scope, $rootScope, $modal, $location) {
   }
 });
 JMSApp.controller('HomeCtrl', function($scope, $modal) {
+  $scope.getCategory = function(c) {
+    //console.log("in getCategory() -> c.name: " + c.name);
+    var category = c.category;
+    category.fetch({
+      success: function(category) {
+        console.log("in getCategory() -> category.name: " + c.name + " - " + category.name);
+        return category.name;
+      }});
+  }
   $scope.counter = 0;
   var query = new AV.Query(JMS.Cruise);
   query.equalTo("isOnPromotion", true);
   query.include("imageArray");
   query.find().then(function(results) {
-    $scope.$apply(function() {
-      console.log(results.length);
+
+      console.log("In HomeCtr-> length: " + results.length);
       $scope.cruises = results;
-    });
+
+      //get Category
+      for(var i = 0; i < $scope.cruises.length; i++) {
+        //console.log("In HomeCtr-> [i]: " + i);
+      //  getCategory(results[i]);
+      // console.log("$scope.cruises[i].name: " + $scope.cruises[i].name);
+       var categoryResult =  $scope.getCategory($scope.cruises[i]);
+        //console.log("in APPLY() -> categoryResult:   " + categoryResult);
+        $scope.cruises[i].category.fetch().then(function (category) {
+          $scope.cruises[i].categoryName = category.name;
+          console.log("in APPLY() -> $scope.cruises[i].categoryName: " + $scope.cruises[i].categoryName);
+
+        });
+        $scope.cruises[i].categoryName = categoryResult;
+        //console.log("in APPLY() -> $scope.cruises[i].categoryName: " + $scope.cruises[i].categoryName);
+      }
+
   });
-  $scope.getCategory = function(c) {
-    var category = c.category;
-    category.fetch({
-      success: function(category) {
-    $scope.$notify(function() {
-  var name = category.name;
-  // $scope.categoryName = "shit";
-  console.log("In Controller-> name: " + name);
-  $scope.counter++;
-  console.log("In Controller-> counter " + $scope.counter);
-  return name;
-  });
-  }});
-  }
+
   $scope.viewCruise = function(cruise) {
     var modalInstance = $modal.open({
       templateUrl: 'partials/modal_cruise.ejs',
