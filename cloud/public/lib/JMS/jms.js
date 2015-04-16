@@ -117,6 +117,15 @@
 		}
 	});
 
+	Object.defineProperty(JMS.Cruise.prototype, "isOnPromotion", {
+		get: function() {
+			return this.get("isOnPromotion");
+		},
+		set: function(value) {
+			this.set("isOnPromotion", value);
+		}
+	});
+
 	Object.defineProperty(JMS.Cruise.prototype, "agentPrice", {
 		get: function() {
 			if (this.tempAgentPricePriceStringPriceString == undefined) {

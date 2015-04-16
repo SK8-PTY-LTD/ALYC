@@ -46,32 +46,18 @@ JMSApp.controller('HomeCtrl', function($scope, $modal) {
       success: function(category) {
         console.log("in getCategory() -> category.name: " + c.name + " - " + category.name);
         return category.name;
-      }});
+      }
+    });
   }
   $scope.counter = 0;
   var query = new AV.Query(JMS.Cruise);
   query.equalTo("isOnPromotion", true);
   query.include("imageArray");
+  query.include("category.name");
   query.find().then(function(results) {
 
-      console.log("In HomeCtr-> length: " + results.length);
-      $scope.cruises = results;
-
-      //get Category
-      for(var i = 0; i < $scope.cruises.length; i++) {
-        //console.log("In HomeCtr-> [i]: " + i);
-      //  getCategory(results[i]);
-      // console.log("$scope.cruises[i].name: " + $scope.cruises[i].name);
-       var categoryResult =  $scope.getCategory($scope.cruises[i]);
-        //console.log("in APPLY() -> categoryResult:   " + categoryResult);
-        $scope.cruises[i].category.fetch().then(function (category) {
-          $scope.cruises[i].categoryName = category.name;
-          console.log("in APPLY() -> $scope.cruises[i].categoryName: " + $scope.cruises[i].categoryName);
-
-        });
-        $scope.cruises[i].categoryName = categoryResult;
-        //console.log("in APPLY() -> $scope.cruises[i].categoryName: " + $scope.cruises[i].categoryName);
-      }
+    console.log("In HomeCtr-> length: " + results.length);
+    $scope.cruises = results;
 
   });
 
@@ -341,10 +327,8 @@ JMSApp.controller('ViewCruiseController', function($scope, cruise) {
   }
 });
 JMSApp.controller('AdsCtrl', function($scope) {
-  var category = new JMS.Category();
-  category.id = "54fd999be4b0447de160ab23";
   var query = new AV.Query(JMS.Cruise);
-  query.equalTo("category", category);
+  query.equalTo("isOnPromotion", true);
   query.find().then(function(results) {
     var slides = $scope.slides = [];
     for (var i = 0; i < results.length; i++) {
