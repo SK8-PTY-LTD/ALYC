@@ -14,8 +14,10 @@ a span {
 }
 .navbar-inverse {
   text-align: center;
-  background-color: #fff;
-  border-color: transparent;
+  background-color: #f9f9f9;
+  border-color: grey;
+    border-style: inset;
+    border-bottom-width: 2px;
 }
 .navbar-inverse .navbar-nav>.active>a, .navbar-inverse .navbar-nav>.active>a:focus, .navbar-inverse .navbar-nav>.active>a:hover {
   color: #fff;
@@ -144,6 +146,15 @@ ul.social-buttons li a i:hover, ul.social-buttons li a i:focus, ul.social-button
     margin-bottom: 70px;
     height: 60px;
     text-align: center;
-
 }
 
+/* Change menu text's colour when it is active */
+.active span {
+    color: white;
+}
+
+/* AngularJS Google Maps*/
+.angular-google-map-container {
+    padding-top: 20px;
+    height: 500px;
+}

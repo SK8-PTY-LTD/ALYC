@@ -400,3 +400,28 @@ JMSApp.controller('ServiceCtrl', function($scope) {
     alert("Thank you for your enquiry. We will get back to you soon!");
   }
 });
+
+// AngularJS Google Maps loader
+
+JMSApp.config(function(uiGmapGoogleMapApiProvider) {
+  uiGmapGoogleMapApiProvider.configure({
+    //    key: 'your api key',
+    v: '3.17',
+    libraries: 'weather,geometry,visualization'
+  });
+});
+
+JMSApp.controller('ContactController', function($scope, uiGmapGoogleMapApi) {
+  $scope.map = { center: { latitude: -33.8764458, longitude: 151.2047273}, zoom: 17};
+
+  $scope.marker = {
+    id: 0,
+    coords: {
+      latitude: -33.8764458,
+      longitude: 151.2047273
+    }
+  };
+  uiGmapGoogleMapApi.then(function(maps) {
+
+  });
+});

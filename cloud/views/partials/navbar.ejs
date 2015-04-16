@@ -7,7 +7,7 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="/cn/"><img ng-src="/img/logo_1.png" alt=""></a>
+      <a class="navbar-brand" href="/cn/"><img ng-src="/img/logo_reverse.png" alt=""></a>
     </div>
     <div class="collapse navbar-collapse" collapse="navCollapsed">
       <ul class="nav navbar-nav navbar-right">
@@ -24,19 +24,19 @@
           </ul>
         </li>
         <li ng-class="{ active: isActive('/cn/service') }">
-          <a class="my-menu" ng-href="/cn/service"><span>服务</span></a>
+          <a ng-href="/cn/service"><span>服务</span></a>
         </li>
         <li ng-class="{ active: isActive('/cn/gallery') }">
-          <a class="my-menu" ng-href="/cn/gallery"><span>相册</span></a>
+          <a  ng-href="/cn/gallery"><span>相册</span></a>
         </li>
         <li ng-class="{ active: isActive('/cn/about') }">
-          <a class="my-menu" ng-href="/cn/about"><span>关于</span></a>
+          <a  ng-href="/cn/about"><span>关于</span></a>
         </li>
         <li ng-class="{ active: isActive('/cn/contact') }">
-          <a class="my-menu" ng-href="/cn/contact"><span>联系我们</span></a>
+          <a  ng-href="/cn/contact"><span>联系我们</span></a>
         </li>
         <li ng-show="currentUser.id && currentUser.isAdminUser">
-          <a class="my-menu" ng-href="/dashboard"><span>控制台</span></a>
+          <a  ng-href="/dashboard"><span>控制台</span></a>
         </li>
         <li ng-show="currentUser.profileName">
           <a ng-bind="currentUser.profileName"></a>

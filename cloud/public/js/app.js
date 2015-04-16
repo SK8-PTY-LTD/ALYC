@@ -9,7 +9,8 @@ var JMSApp = angular.module('JMSApp',
   ['ui.bootstrap', 
   'ngRoute', 
   'duScroll', 
-  'angularFileUpload']);
+  'angularFileUpload',
+  'uiGmapgoogle-maps']);
 
 JMSApp.config(function($routeProvider, $locationProvider, $httpProvider) {
   $routeProvider.
