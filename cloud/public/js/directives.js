@@ -74,13 +74,3 @@ JMSApp.directive('ngReallyClick', [
 	}
 ]);
 
-JMSApp.directive('Collage', function(){
-	return {
-		restrict: 'A',
-		link: function(scope, element, attrs) {
-			alert("Collage worked");
-			element.removeWhitespace().collagePlus();
-
-		}
-	}
-})

@@ -7,45 +7,45 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="/cn/"><img ng-src="/img/logo.png" alt=""></a>
+      <a class="navbar-brand" href="/cn/"><img ng-src="/img/logo_1.png" alt=""></a>
     </div>
     <div class="collapse navbar-collapse" collapse="navCollapsed">
       <ul class="nav navbar-nav navbar-right">
         <li ng-class="{ active: isActive('/cn/home') }">
-          <a ng-href="/cn/home">主页</a>
+          <a class="my-menu" ng-href="/cn/home"><span>主页</span></a>
         </li>
         <!-- Single button -->
         <li class="btn-group"dropdown is-open="status.isHomeOpen" ng-class="{ active: isActive('/cn/cruise') }">
           <a type="button" class="dropdown-toggle"dropdown-toggle ng-disabled="disabled">
-            游艇 <span class="caret"></span>
+            <span>游艇 </span><span class="caret"></span>
           </a>
           <ul class="dropdown-menu" role="menu" ng-controller="CategoryCtrl">
             <li ng-repeat="category in categories"><a ng-href="/cn/cruise/#{{ category.tag }}" du-smooth-scroll du-scrollspy offset="80"><span ng-bind="category.name"></span></a></li>
           </ul>
         </li>
         <li ng-class="{ active: isActive('/cn/service') }">
-          <a ng-href="/cn/service">服务</a>
+          <a class="my-menu" ng-href="/cn/service"><span>服务</span></a>
         </li>
         <li ng-class="{ active: isActive('/cn/gallery') }">
-          <a ng-href="/cn/gallery">相册</a>
+          <a class="my-menu" ng-href="/cn/gallery"><span>相册</span></a>
         </li>
         <li ng-class="{ active: isActive('/cn/about') }">
-          <a ng-href="/cn/about">关于</a>
+          <a class="my-menu" ng-href="/cn/about"><span>关于</span></a>
         </li>
         <li ng-class="{ active: isActive('/cn/contact') }">
-          <a ng-href="/cn/contact">联系我们</a>
+          <a class="my-menu" ng-href="/cn/contact"><span>联系我们</span></a>
         </li>
         <li ng-show="currentUser.id && currentUser.isAdminUser">
-          <a ng-href="/dashboard">控制台</a>
+          <a class="my-menu" ng-href="/dashboard"><span>控制台</span></a>
         </li>
         <li ng-show="currentUser.profileName">
           <a ng-bind="currentUser.profileName"></a>
         </li>
         <li>
-          <a ng-click="logOut()" ng-show="currentUser.id">退出登录</a>
+          <a class="menu" ng-click="logOut()" ng-show="currentUser.id"><span>退出登录</span></a>
         </li>
         <li>
-          <a ng-click="login()" ng-show="!currentUser.id">成员登入</a>
+          <a class="menu" ng-click="login()" ng-show="!currentUser.id"><span>成员登入</span></a>
         </li>
       </ul>
     </div>

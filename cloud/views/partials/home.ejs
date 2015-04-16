@@ -1,41 +1,47 @@
 <!-- Page Content -->
-<div class="row">
-  <div class="col-md-6 jumbotron">
-    <h4 class="col-md-12" style="line-height: 25px">至尊遊艇會是悉尼第一家華人頂級豪華遊艇租賃及活動策劃代理公司。我們專注于全澳各地給想要乘坐遊艇遊覽悉尼港的顧客提供一個完全不一樣的特殊體驗和五星級的服務。<br><br></h4>
-    <!--img src="/img/logo_1.png" class="col-md-6 col-md-offset-3" -->
-    <h5 class="col-md-12" style="line-height: 20px">一个整天, 或是短期停留,公司或私人派對，时间由您选择,至尊遊艇會为您提供一个绝妙的假期。在悉尼, 我们有60多艘配有乘务员的船只, 包括长12到140多米的大型游艇和面積達到350平方米的大型活動船隻。我們每一艘遊艇都是這世界上獨一無二的。 您可以根據不同預算从中选择, 来度过您独特的假期或者舉辦婚禮，生日聚會，企業年會和商務會談……等。</h5>
-  </div>
-  <div class="col-md-6" ng-controller="AdsCtrl">
-    <div style="height: 400px">
-      <carousel interval="5000">
-      <slide ng-repeat="slide in slides" active="slide.active">
-      <img ng-src="{{ slide.image }}" class="img-responsive">
-      </slide>
-      </carousel>
-    </div>
-  </div>
-</div>
+<img class="header-img" src="img/header_img.jpg" width="1140" height="300">
 
-<h1 class="main-page-title"> <a href="/cn/cruise"> - 豪華遊艇 -</a></h1>
+
+
+<h1 class="main-page-title"> <a href="/cn/cruise">遊艇介紹</a></h1>
 <div class="row" ng-controller="HomeCtrl">
+  <div class="col-md-8">
   <div class="col-md-12" ng-repeat="cruise in cruises | filter:query">
-    <div class="row" ng-click="viewCruise(cruise)">
+    <div class="row">
       <div class="col-md-3 inline-thm" bg-color="black">
-        <a><img ng-src="{{ cruise.coverImage.thumbnailURL(430,300) }}" alt=""></a>
+        <a><img ng-src="{{ cruise.coverImage.thumbnailURL(220,150) }}" alt=""></a>
       </div>
       <div class="col-md-7" bg-color="black">
-        <h3><a ng-bind="cruise.name"></a></h3>
-        <p ng-bind="cruise.summary"></p>
-        <button class="btn btn-default">了解更多</button>
+        <div class="caption">
+          <h4 class="pull-right"><span ng-bind="cruise.capacity"></span> 人</h4>
+
+          <h4><span ng-bind="cruise.name"></span></h4>
+          <span ng-bind="getCategory(cruise)"></span>
+          <h4 ng-show="!cruise.agentPrice || cruise.agentPrice == 0 || currentUser == undefined">$<span ng-bind="cruise.price"></span>/小时</h4>
+          <del ng-show="cruise.agentPrice && cruise.agentPrice != 0 && currentUser != undefined">原价: $<span ng-bind="cruise.price"></span>/小时</del>
+          <h4 ng-show="cruise.agentPrice && cruise.agentPrice != 0 && currentUser != undefined">会员价: $<span ng-bind="cruise.agentPrice"></span>/小时</h4>
+          <button class="btn btn-primary pull-right">详情</button>
+          <p><span ng-bind="cruise.minimumHour"></span>小时 起租</p>
+        </div>
       </div>
     </div>
   </div>
+    </div>
+  <div class="col-md-4" ng-controller="AdsCtrl">
+    <div>
+      搜索: <input ng-model="query" placeholder="豪华游艇" class="ng-pristine ng-untouched ng-valid">
+    </div>
+    <br>
+    <div class="list-group" ng-controller="CategoryCtrl">
+      <a ng-repeat="category in categories | filter:query" ng-href="/cn/cruise/#{{ category.tag }}" class="list-group-item" du-smooth-scroll du-scrollspy offset="80"><span ng-bind="category.name"></span></a>
+    </div>
+  </div>
 </div>
-<h1 class="main-page-title"><a href="/cn/service"> - 我们的服务 -</a></h1>
+<h1 class="main-page-title"><a href="/cn/service"> 我们的服务 </a></h1>
 
   <div class="row">
     <div class="col-md-3 inline-thm" bg-color="black">
-      <a href="cn/wedding"><img src="img/wedding1.png" width="430" height="300"></a>
+      <a href="cn/wedding"><img src="img/wedding1.png" width="220" height="150"></a>
     </div>
     <div class="col-md-7" bg-color="black">
       <h3><a href="cn/wedding">婚礼策划</a></h3>
@@ -45,25 +51,25 @@
       <p>婚慶場地是構建成功的婚禮風格的重要組成部分。不管你選擇什麼樣主題風格的婚禮，至尊遊艇會都能把我們的奢華私人遊艇為您設計佈置成最終達到您要求的完美理想場所。</p>
         <p>我們的婚宴船是專門用於豪華婚禮設計的多功能船隻。我們的婚宴船提供一個廣泛視角的玻璃結果的設計，能夠讓您從不同角度欣賞到悉尼港的美景。我們的婚慶船能夠容納2-800名乘客在多個層面。我們的婚宴船滿足您的各種需求，我們還可以安排在悉尼最好的婚禮DJ，樂隊和娛樂服務。以及我們還提供奢華的過夜包船服務。讓您在奢華的私人遊艇上度過終極浪漫的新婚之夜。
       </p>
-      <button class="btn btn-default"><a href="cn/wedding">了解更多</a></button>
+      <button class="btn btn-default"><a href="/cn/service"> 了解更多 </a></button>
     </div>
   </div>
   <br>
   <div class="row">
     <div class="col-md-3 inline-thm" bg-color="black">
-      <a href="cn/business"><img src="img/business1.png" width="430" height="300"></a>
+      <a href="cn/business"><img src="img/business1.png" width="220" height="150"></a>
     </div>
     <div class="col-md-7" bg-color="black">
       <h3><a href="cn/business">商业活动</a></h3>
       <p>至尊遊艇會可以承辦各種公司活動，如一般活動，多功能宴會，產品發佈會和會議。沒有什麼比舉辦一場在悉尼港遊艇上的包船活動更能讓您的客戶和同事感受到不一樣的體驗，從而讓您的客戶和同事感受到您的企業的完美和努力。</p>
       <p>至尊遊艇會是悉尼港首屈一指的包船服務。我們的團隊能夠幫助你舉辦一場您理想中的企業活動，在悉尼港這個久負盛名的美麗海港。如果您的企業包船是為了 員工聖誕派對，團隊建設，產品發佈會和會議。那麼至尊遊艇會將是您不能錯過的選擇。至尊遊艇會擁有完美的豪華遊艇能夠滿足您的各種需求。完美與精緻的餐飲和全套酒吧設施。我們提供各種活動包裝和設計以適應您的企業建設要求。</p>
-      <button class="btn btn-default"><a href="cn/business">了解更多</a></button>
+      <button class="btn btn-default"><a ng-href="/cn/business">了解更多</a></button>
     </div>
   </div>
   <br>
   <div class="row">
     <div class="col-md-3 inline-thm" bg-color="black">
-      <a href="cn/casual"><img src="img/entertainment1.png" width="430" height="300"></a>
+      <a href="cn/casual"><img src="img/entertainment1.png" width="220" height="150"></a>
     </div>
     <div class="col-md-7" bg-color="black">
       <h3><a href="cn/casual">休闲娱乐</a></h3>
@@ -73,19 +79,19 @@
         悉尼港是每年新年煙花匯演最佳的位置，在船上欣賞海港大橋和歌劇院聯合進行的新年煙花匯演絕對是一次絕佳的體驗。至尊遊艇會提供新年夜包船活動。不用提前早上排隊，不用人擠人，就能在絕佳位置與親朋好友一起欣賞一年一度的悉尼最著名的煙花表演。與此同時，還能享受我們為您精心提供的五星級美食和服務。這就是至尊遊艇會新年包船活動。
       </p>
       <p>今年，它可能就是你的新年夜，在海港里豪華和舒適的完美的參與這次跨年活動中來。我們目前正在對我們有限的最搶手的豪華包船的跨年夜活動進行提前預訂。</p>
-      <button class="btn btn-default"><a href="cn/casual">了解更多</a></button>
+      <button class="btn btn-default"><a ng-href="/cn/casual">了解更多</a></button>
     </div>
   </div>
   <br>
   <div class="row">
     <div class="col-md-3 inline-thm" bg-color="black">
-      <a href="cn/fishing"><img src="img/fishing1.png" width="430" height="300"></a>
+      <a href="cn/fishing"><img src="img/fishing1.png" width="220" height="150"></a>
     </div>
     <div class="col-md-7" bg-color="black">
       <h3><a href="cn/fishing">深海垂钓</a></h3>
       <p>我們的漁船正在準備一年一度的追逐馬林魚賽季，追逐所有的大馬林魚的物種，鯕鰍魚，強大的黃鰭金槍魚，大鯊魚加上近岸礁石首魚。我們的釣魚船可以安排接客戶從悉尼港的任何位置。我們的船也提供包機服務去史蒂芬港，從二月到三月是作為最好的追逐馬林魚的時間。</p>
       <p>我們的釣魚船提供各種各樣的服務，無論您是想享受專業的海釣樂趣，還是想休閒娛樂的在悉尼港內放鬆一天。我們都能為您安排您的完美休閒時刻。專業的釣魚船配備有專業釣魚雷達和專業的海釣指導人員，能夠讓您在大海中跟隨雷達追逐魚群。也可以根據您的安排在Parramatta river 享受安靜祥和的一天與您的家人朋友。</p>
       <p>熱衷於體驗了一生的釣魚經驗？聯繫上至尊遊艇會，討論可能的最佳捕撈天或發送電子郵件詢問。</p>
-      <button class="btn btn-default"><a href="cn/fishing">了解更多</a></button>
+      <button class="btn btn-default"><a ng-href="cn/fishing">了解更多</a></button>
     </div>
   </div>

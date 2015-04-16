@@ -39,10 +39,9 @@ JMSApp.controller("NavCtrl", function($scope, $rootScope, $modal, $location) {
   }
 });
 JMSApp.controller('HomeCtrl', function($scope, $modal) {
-  var category = new JMS.Category();
-  category.id = "550b6ffde4b03b1913106cdb";
+  $scope.counter = 0;
   var query = new AV.Query(JMS.Cruise);
-  query.equalTo("category", category);
+  query.equalTo("isOnPromotion", true);
   query.include("imageArray");
   query.find().then(function(results) {
     $scope.$apply(function() {
@@ -50,6 +49,20 @@ JMSApp.controller('HomeCtrl', function($scope, $modal) {
       $scope.cruises = results;
     });
   });
+  $scope.getCategory = function(c) {
+    var category = c.category;
+    category.fetch({
+      success: function(category) {
+    $scope.$notify(function() {
+  var name = category.name;
+  // $scope.categoryName = "shit";
+  console.log("In Controller-> name: " + name);
+  $scope.counter++;
+  console.log("In Controller-> counter " + $scope.counter);
+  return name;
+  });
+  }});
+  }
   $scope.viewCruise = function(cruise) {
     var modalInstance = $modal.open({
       templateUrl: 'partials/modal_cruise.ejs',
