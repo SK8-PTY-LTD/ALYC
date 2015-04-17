@@ -1,6 +1,26 @@
 'use strict';
 /* Controllers */
-JMSApp.controller('AppCtrl', function($scope, $http) {});
+JMSApp.controller('AppCtrl', function($scope, $http, $location) {
+  $scope.landing = $location.path() == "/";
+  $scope.$on('$routeChangeSuccess', function() {
+    $scope.landing = $location.path() == "/";
+    if ($scope.landing) {
+      $scope.landingStyle = {
+        'display': 'table',
+        'position': 'relative',
+        'width': '100%',
+        'height': '100%',
+        'background': 'url(img/bg.jpg) no-repeat center center scroll',
+        '-webkit-background-size': 'cover',
+        '-moz-background-size': 'cover',
+        'background-size': 'cover',
+        '-o-background-size': 'cover'
+      }
+    } else {
+      $scope.landingStyle = {}
+    }
+  });
+});
 JMSApp.controller("NavCtrl", function($scope, $rootScope, $modal, $location) {
   $rootScope.currentUser = JMS.User.current();
   $scope.isActive = function(viewLocation) {
@@ -412,7 +432,13 @@ JMSApp.config(function(uiGmapGoogleMapApiProvider) {
 });
 
 JMSApp.controller('ContactController', function($scope, uiGmapGoogleMapApi) {
-  $scope.map = { center: { latitude: -33.8764458, longitude: 151.2047273}, zoom: 17};
+  $scope.map = {
+    center: {
+      latitude: -33.8764458,
+      longitude: 151.2047273
+    },
+    zoom: 17
+  };
 
   $scope.marker = {
     id: 0,

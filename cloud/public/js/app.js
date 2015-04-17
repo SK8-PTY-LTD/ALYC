@@ -15,7 +15,7 @@ var JMSApp = angular.module('JMSApp',
 JMSApp.config(function($routeProvider, $locationProvider, $httpProvider) {
   $routeProvider.
   when('/', {
-    templateUrl: 'partials/partial1',
+    templateUrl: 'partials/landing',
   }).
   when('/dashboard', {
     templateUrl: 'partials/dashboard',
@@ -23,38 +23,38 @@ JMSApp.config(function($routeProvider, $locationProvider, $httpProvider) {
   when('/term', {
     templateUrl: 'partials/term',
   }).
-  when('/cn/home', {
+  when('/home', {
     templateUrl: 'partials/home',
   }).
-  when('/cn/service', {
+  when('/service', {
     templateUrl: 'partials/service'
   }).
-  when('/cn/cruise', {
+  when('/cruise', {
     templateUrl: 'partials/cruise',
   }).
-  when('/cn/gallery', {
+  when('/gallery', {
     templateUrl: 'partials/gallery'
   }).
-  when('/cn/about', {
+  when('/about', {
     templateUrl: 'partials/about',
   }).
-  when('/cn/contact', {
+  when('/contact', {
     templateUrl: 'partials/contact',
   }).
-  when('/cn/wedding', {
+  when('/wedding', {
     templateUrl: 'partials/wedding',
   }).
-  when('/cn/business', {
+  when('/business', {
     templateUrl: 'partials/business',
   }).
-  when('/cn/casual', {
+  when('/casual', {
     templateUrl: 'partials/casual',
   }).
-  when('/cn/fishing', {
+  when('/fishing', {
     templateUrl: 'partials/fishing',
   }).
   otherwise({
-    redirectTo: '/cn/home'
+    redirectTo: '/home'
   });
 
   $locationProvider.html5Mode(true);
