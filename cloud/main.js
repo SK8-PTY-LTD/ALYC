@@ -42,7 +42,7 @@ AV.Cloud.define("sendEmail", function(request, response) {
 		}
 		//Else we can greet    and leave
 		else {
-			response.success(message);
+			response.success();
 		}
 	});
 });
