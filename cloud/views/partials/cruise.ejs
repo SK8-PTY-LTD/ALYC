@@ -1,0 +1,49 @@
+<div class="container" ng-controller="CategoryCtrl">
+	<!-- <h1>This is the cruise page</h1> -->
+	<div class="row">
+		<div class="col-md-8">
+			<accordion close-others="oneAtATime">
+				<accordion-group ng-repeat="category in categories" is-open="true">
+					<accordion-heading>
+						<span ng-bind="category.name" id="{{ category.tag }}"></span>
+						<i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-up': category.open, 'glyphicon-chevron-down': !category.open}"></i>
+					</accordion-heading>
+					<div class="row" ng-controller="CruiseCtrl">
+						<div class="col-md-4" ng-repeat="cruise in cruises | filter:query" ng-click="viewCruise(cruise)">
+							<div class="thumbnail">
+								<img ng-src="{{ cruise.coverImage.url() }}" alt="">
+								<div class="caption">
+									<h4 class="pull-right"><span ng-bind="cruise.capacity"></span> 人</h4>
+									<span ng-bind="category.name"></span>
+									<h4><a><span ng-bind="cruise.name"></span></a></h4>
+									<h4 ng-show="!cruise.agentPrice || cruise.agentPrice == 0 || currentUser == undefined">$<span ng-bind="cruise.price"></span>/小时</h4>
+									<del ng-show="cruise.agentPrice && cruise.agentPrice != 0 && currentUser != undefined">原价: $<span ng-bind="cruise.price"></span>/小时</del>
+									<h4 ng-show="cruise.agentPrice && cruise.agentPrice != 0 && currentUser != undefined">会员价: $<span ng-bind="cruise.agentPrice"></span>/小时</h4>
+									<button class="btn btn-primary pull-right">详情</button>
+									<p><span ng-bind="cruise.minimumHour"></span>小时 起租</p>
+								</div>
+							</div>
+						</div>
+					</div>
+				</accordion-group>
+			</accordion>
+		</div>
+		<div class="col-md-4" ng-controller="AdsCtrl">
+			<div style="height: 320px">
+				<h2>婚礼宴会</h2>
+				<carousel interval="5000">
+				<slide ng-repeat="slide in slides" active="slide.active">
+				<img ng-src="{{ slide.image }}" class="img-responsive">
+				</slide>
+				</carousel>
+			</div>
+			<div>
+				搜索: <input ng-model="query" placeholder="豪华游艇" class="ng-pristine ng-untouched ng-valid">
+			</div>
+			<br>
+			<div class="list-group">
+				<a ng-repeat="category in categories | filter:query" ng-href="/cruise/#{{ category.tag }}" class="list-group-item" du-smooth-scroll du-scrollspy offset="80"><span ng-bind="category.name"></span></a>
+			</div>
+		</div>
+	</div>
+</div>

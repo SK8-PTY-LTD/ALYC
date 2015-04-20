@@ -1,16 +1,59 @@
-// 在 Cloud code 里初始化 Express 框架
-var express = require('express');
-var app = express();
 
-// App 全局配置
-app.set('views','cloud/views');   // 设置模板目录
-app.set('view engine', 'ejs');    // 设置 template 引擎
-app.use(express.bodyParser());    // 读取请求 body 的中间件
+/**
+ * Module dependencies
+ */
 
-// 使用 Express 路由 API 服务 /hello 的 HTTP GET 请求
-app.get('/hello', function(req, res) {
-  res.render('hello', { message: 'Congrats, you just set up your app!' });
+var express = require('express'),
+  bodyParser = require('body-parser'),
+  methodOverride = require('method-override'),
+  errorHandler = require('error-handler'),
+  morgan = require('morgan'),
+  routes = require('cloud/routes'),
+  api = require('cloud/routes/api'),
+  http = require('http'),
+  path = require('path'),
+  avosExpressHttpsRedirect = require('avos-express-https-redirect');
+
+var app = module.exports = express();
+
+
+/**
+ * Configuration
+ */
+
+// all environments
+app.set('views', 'cloud/views');
+app.set('view engine', 'ejs');
+app.use(morgan('dev'));
+app.use(bodyParser());
+app.use(methodOverride());
+app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.errorHandler());
+
+
+/**
+ * Routes
+ */
+
+// serve index and view partials
+app.get('/', routes.index);
+app.get('/partials/:name', routes.partials);
+
+// JSON API
+app.get('/api/name', api.name);
+
+// redirect all others to the index (HTML5 history)
+app.get('*', routes.index);
+
+// Attach the Express app to Cloud Code.
+app.listen({
+  'static': {
+    maxAge: 604800000
+  }
 });
-
-// 最后，必须有这行代码来使 express 响应 HTTP 请求
-app.listen();
+app.use(function(req, res, next) {
+  res.status(404).render('404', {
+    errorCode: 404,
+    errorDescription: 'Sorry, page not found'
+  });
+});
