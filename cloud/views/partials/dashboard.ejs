@@ -2,9 +2,9 @@
     <div class="row">
         <div class="col-sm-3">
             <ul class="nav nav-tabs nav-stacked nav-pills" role="tablist">
-                <li ng-class="{'active': view_tab == 'agent'}">
+                <!-- <li ng-class="{'active': view_tab == 'agent'}">
                     <a class="btn-lg" ng-click="changeTab('agent')" href="">会员管理</a>
-                </li>
+                </li> -->
                 <li ng-class="{'active': view_tab == 'cruise'}">
                     <a class="btn-lg" ng-click="changeTab('cruise')" href="">游艇管理</a>
                 </li>
@@ -14,9 +14,9 @@
             </ul>
         </div>
         <div class="col-sm-9">
-            <div ng-show="view_tab == 'agent'">
+            <!-- <div ng-show="view_tab == 'agent'">
                 This is tab 1 content
-            </div>
+            </div> -->
             <div ng-show="view_tab == 'cruise'" ng-controller="CategoryCtrl">
                 <accordion close-others="oneAtATime">
                     <accordion-group ng-repeat="category in categories | filter:query" is-open="true">
