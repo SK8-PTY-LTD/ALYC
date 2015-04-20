@@ -1,6 +1,6 @@
 'use strict';
 /* Controllers */
-JMSApp.controller('AppCtrl', function($scope, $http, $location) {
+JMSApp.controller('AppCtrl', function($scope, $http, $location, $modal) {
   $scope.landing = $location.path() == "/";
   $scope.$on('$routeChangeSuccess', function() {
     $scope.landing = $location.path() == "/";
@@ -20,6 +20,13 @@ JMSApp.controller('AppCtrl', function($scope, $http, $location) {
       $scope.landingStyle = {}
     }
   });
+  $scope.openWeChat = function() {
+    var modalInstance = $modal.open({
+      templateUrl: 'partials/wechat',
+      scope: $scope,
+      size: "sm"
+    });
+  }
 });
 JMSApp.controller("NavCtrl", function($scope, $rootScope, $modal, $location) {
   $rootScope.currentUser = JMS.User.current();
@@ -43,19 +50,6 @@ JMSApp.controller("NavCtrl", function($scope, $rootScope, $modal, $location) {
     JMS.User.logOut();
     // Do stuff after successful login.
     $rootScope.currentUser = undefined;
-  }
-  $scope.openWeChat = function() {
-    var modalInstance = $modal.open({
-      templateUrl: 'partials/wechat',
-      controller: 'LoginCtrl',
-      scope: $scope,
-      size: "sm"
-    });
-    modalInstance.result.then(function(user) {
-      if (user != undefined) {
-        $rootScope.currentUser = user;
-      }
-    });
   }
 });
 JMSApp.controller('HomeCtrl', function($scope, $modal) {

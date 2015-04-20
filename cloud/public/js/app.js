@@ -2,15 +2,15 @@
 
 /* App Module */
 
-var AV_APP_ID = "9bzfvch6oauso7mhu5n3wo8p5vnk8xd2pbl8hiohqg08ib4w";
-var AV_APP_KEY = "xmkls6i71a6733tow806dze8v5arzi6levnb2sjmbt98v80n";
+var AV_APP_ID = "sw6jt1f8ew75wazc2gjt6koyzgw66m0taex87gl8fq7mkv4w";
+var AV_APP_KEY = "wdxls3vts2p3xlm7qv19wy48ietmxqf4md5f6wrzj3cpvlaj";
 
-var JMSApp = angular.module('JMSApp', 
-  ['ui.bootstrap', 
-  'ngRoute', 
-  'duScroll', 
+var JMSApp = angular.module('JMSApp', ['ui.bootstrap',
+  'ngRoute',
+  'duScroll',
   'angularFileUpload',
-  'uiGmapgoogle-maps']);
+  'uiGmapgoogle-maps'
+]);
 
 JMSApp.config(function($routeProvider, $locationProvider, $httpProvider) {
   $routeProvider.
@@ -59,6 +59,8 @@ JMSApp.config(function($routeProvider, $locationProvider, $httpProvider) {
 
   $locationProvider.html5Mode(true);
   //For JS SDK
+  AV.useAVCloudUS();
+  // AV.serverURL = "https://avoscloud.us";
   AV.initialize(AV_APP_ID, AV_APP_KEY);
   //For REST API, which is not in use atm
   $httpProvider.defaults.headers.common = {
