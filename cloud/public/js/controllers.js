@@ -329,7 +329,7 @@ JMSApp.controller("NewCruiseController", function($scope, $modalInstance, cruise
     alert("Cruise had been deleted. It will disappear upon page refresh.");
   }
 });
-JMSApp.controller('ViewCruiseController', function($scope, cruise) {
+JMSApp.controller('ViewCruiseController', function($scope, $modalInstance, cruise) {
   $scope.cruise = cruise;
   var slides = $scope.slides = [];
   for (var i = 0; i < cruise.imageArray.length; i++) {
@@ -341,9 +341,10 @@ JMSApp.controller('ViewCruiseController', function($scope, cruise) {
   }
   $scope.submit = function() {
     $scope.enquiry.subject = "Cruise Enquiry";
-    $scope.enquiry.receiver = "133342301@163.com";
+    $scope.enquiry.receiver = "nan@jmsaustralia.com";
     AV.Cloud.run('sendEmail', $scope.enquiry);
     alert("Thank you for your enquiry. We will get back to you soon!");
+    $modalInstance.close();
   }
 });
 JMSApp.controller('AdsCtrl', function($scope) {
@@ -415,7 +416,7 @@ JMSApp.controller('ServiceCtrl', function($scope) {
   }];
   $scope.submit = function(service) {
     $scope.enquiry.subject = service + " Enquiry";
-    $scope.enquiry.receiver = "133342301@163.com";
+    $scope.enquiry.receiver = "nan@jmsaustralia.com";
     AV.Cloud.run('sendEmail', $scope.enquiry);
     alert("Thank you for your enquiry. We will get back to you soon!");
   }
@@ -444,4 +445,10 @@ JMSApp.controller('ContactController', function($scope, uiGmapGoogleMapApi) {
   uiGmapGoogleMapApi.then(function(maps) {
 
   });
+  $scope.submit = function() {
+    $scope.enquiry.receiver = "nan@jmsaustralia.com";
+    AV.Cloud.run('sendEmail', $scope.enquiry);
+    alert("Thank you for your enquiry. We will get back to you soon!");
+    $modalInstance.close();
+  }
 });

@@ -4,8 +4,8 @@
 (function() {
 	//Default function
 	var moduleName = "JMS";
-	var AV_App_Id = "9bzfvch6oauso7mhu5n3wo8p5vnk8xd2pbl8hiohqg08ib4w";
-	var AV_App_Key = "xmkls6i71a6733tow806dze8v5arzi6levnb2sjmbt98v80n";
+	var AV_App_Id = "sw6jt1f8ew75wazc2gjt6koyzgw66m0taex87gl8fq7mkv4w";
+	var AV_App_Key = "wdxls3vts2p3xlm7qv19wy48ietmxqf4md5f6wrzj3cpvlaj";
 	//Set root for browser
 	var root = this;
 	var previous_mymodule = root.JMS;
@@ -16,9 +16,13 @@
 	if (typeof AV === 'undefined') {
 		if (has_require) {
 			AV = require('avoscloud-sdk').AV;
+			AV.useAVCloudUS();
+			AV.serverURL = "https://avoscloud.us";
 			AV.initialize(AV_App_Id, AV_App_Key);
 		} else throw new Error(moduleName + ' requires AV, see http://leancloud.cn');
 	} else {
+		AV.useAVCloudUS();
+		AV.serverURL = "https://avoscloud.us";
 		AV.initialize(AV_App_Id, AV_App_Key);
 	}
 	//Initialize module
@@ -26,10 +30,10 @@
 
 	}
 	JMS.noConflict = function() {
-			root.JMS = previous_mymodule
-			return JMS
-		}
-		//Export module
+		root.JMS = previous_mymodule
+		return JMS
+	}
+	//Export module
 	if (typeof exports !== 'undefined') {
 		if (typeof module !== 'undefined' && module.exports) {
 			exports = module.exports = JMS
@@ -129,7 +133,7 @@
 	Object.defineProperty(JMS.Cruise.prototype, "agentPrice", {
 		get: function() {
 			if (this.tempAgentPricePriceStringPriceString == undefined) {
-				this.tempAgentPricePriceStringPriceString = (this.agentPriceInCent/100).toFixed(2);
+				this.tempAgentPricePriceStringPriceString = (this.agentPriceInCent / 100).toFixed(2);
 			}
 			return this.tempAgentPricePriceStringPriceString;
 		},
@@ -197,7 +201,7 @@
 	Object.defineProperty(JMS.Cruise.prototype, "price", {
 		get: function() {
 			if (this.tempPriceString == undefined) {
-				this.tempPriceString = (this.priceInCent/100).toFixed(2);
+				this.tempPriceString = (this.priceInCent / 100).toFixed(2);
 			}
 			return this.tempPriceString;
 		},
