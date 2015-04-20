@@ -432,13 +432,7 @@ JMSApp.config(function(uiGmapGoogleMapApiProvider) {
 });
 
 JMSApp.controller('ContactController', function($scope, uiGmapGoogleMapApi) {
-  $scope.map = {
-    center: {
-      latitude: -33.8764458,
-      longitude: 151.2047273
-    },
-    zoom: 17
-  };
+  $scope.map = { center: { latitude: -33.8764458, longitude: 151.2047273}, zoom: 17};
 
   $scope.marker = {
     id: 0,
