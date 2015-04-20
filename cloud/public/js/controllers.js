@@ -69,10 +69,10 @@ JMSApp.controller('HomeCtrl', function($scope, $modal) {
   query.include("imageArray");
   query.include("category.name");
   query.find().then(function(results) {
-
     console.log("In HomeCtr-> length: " + results.length);
-    $scope.cruises = results;
-
+    $scope.$apply(function() {
+      $scope.cruises = results;
+    });
   });
 
   $scope.viewCruise = function(cruise) {
@@ -427,7 +427,13 @@ JMSApp.config(function(uiGmapGoogleMapApiProvider) {
 });
 
 JMSApp.controller('ContactController', function($scope, uiGmapGoogleMapApi) {
-  $scope.map = { center: { latitude: -33.8764458, longitude: 151.2047273}, zoom: 17};
+  $scope.map = {
+    center: {
+      latitude: -33.8764458,
+      longitude: 151.2047273
+    },
+    zoom: 17
+  };
 
   $scope.marker = {
     id: 0,
