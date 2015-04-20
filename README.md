@@ -1,1 +1,1 @@
-Cloud code project for JMS Cruise. Cloud Code Guide: https://cn.avoscloud.com/docs/cloud_code_guide.html
+Cloud code project for JMS. Cloud Code Guide: https://cn.avoscloud.com/docs/cloud_code_guide.html
