@@ -102,11 +102,8 @@ ul.social-buttons li a i:hover, ul.social-buttons li a i:focus, ul.social-button
 .thumbnail {
   padding: 0px;
 }
-.modal-sm .modal-content {
-  background-color: #052B73;
-}
-.modal-sm .control-label {
-  color: white;
+.loginIcon {
+  width: 100%;
 }
 /*Drag to upload*/
 .drop-box {
