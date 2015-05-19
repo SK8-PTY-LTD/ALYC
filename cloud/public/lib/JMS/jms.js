@@ -17,12 +17,10 @@
 		if (has_require) {
 			AV = require('avoscloud-sdk').AV;
 			AV.useAVCloudUS();
-			AV.serverURL = "https://avoscloud.us";
 			AV.initialize(AV_App_Id, AV_App_Key);
 		} else throw new Error(moduleName + ' requires AV, see http://leancloud.cn');
 	} else {
 		AV.useAVCloudUS();
-		AV.serverURL = "https://avoscloud.us";
 		AV.initialize(AV_App_Id, AV_App_Key);
 	}
 	//Initialize module

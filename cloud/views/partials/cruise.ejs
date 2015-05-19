@@ -13,7 +13,7 @@
 							<div class="thumbnail">
 								<img ng-src="{{ cruise.coverImage.url() }}" alt="">
 								<div class="caption">
-									<h4 class="pull-right"><span ng-bind="cruise.capacity"></span> 人</h4>
+									<h4 class="pull-right">最大 <span ng-bind="cruise.capacity"></span> 人</h4>
 									<span ng-bind="category.name"></span>
 									<h4><a><span ng-bind="cruise.name"></span></a></h4>
 									<h4 ng-show="!cruise.agentPrice || cruise.agentPrice == 0 || currentUser == undefined">$<span ng-bind="cruise.price"></span>/小时</h4>
