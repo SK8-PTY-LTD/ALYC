@@ -30,11 +30,25 @@ body {
 }
 
 /* Custom Button Styles */
+.landing-h3 {
+    color: white;
+    font-family: 'Inconsolata', ;
+}
 
 .btn-dark {
+    margin-top: 50%;
     border-radius: 0;
     color: #fff;
     background-color: rgba(0,0,0,0.4);
+}
+
+@media (max-width: 640px) {
+    .btn-dark {
+    margin-top: 90%;
+    border-radius: 0;
+    color: #fff;
+    background-color: rgba(0,0,0,0.4);
+    }
 }
 
 .btn-dark:hover,
@@ -230,10 +244,4 @@ hr.small {
     .map {
         height: 75%;
     }
-}
-
-/* Footer */
-
-footer {
-    padding: 100px 0;
 }

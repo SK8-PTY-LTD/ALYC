@@ -11,11 +11,14 @@
     </div>
     <div class="collapse navbar-collapse" collapse="navCollapsed">
       <ul class="nav navbar-nav navbar-right">
+        <li>
+          <a class="my-menu" ng-href="/contact"><span>垂询热线：＋61 2 9268 0883</span></a>
+        </li>
         <li ng-class="{ active: isActive('/home') }">
           <a class="my-menu" ng-href="/home"><span>主页</span></a>
         </li>
         <!-- Single button -->
-        <li class="btn-group"dropdown is-open="status.isHomeOpen" ng-class="{ active: isActive('/cruise') }">
+        <li class="btn-group"dropdown is-open="status.isHomeOpen">
           <a type="button" class="dropdown-toggle"dropdown-toggle ng-disabled="disabled">
             <span>游艇 </span><span class="caret"></span>
           </a>
