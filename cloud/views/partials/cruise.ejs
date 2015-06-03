@@ -11,7 +11,7 @@
 					<div class="row" ng-controller="CruiseCtrl">
 						<div class="col-md-4" ng-repeat="cruise in cruises | filter:query" ng-click="viewCruise(cruise)">
 							<div class="thumbnail">
-								<img ng-src="{{ cruise.coverImage.url() }}" alt="">
+								<img ng-src="{{ cruise.coverImage.url() }}" alt="cruise cover image">
 								<div class="caption">
 									<span ng-bind="category.name"></span>
 									<h4><a><span ng-bind="cruise.name"></span></a></h4>
@@ -33,7 +33,7 @@
 				<h2>婚礼宴会</h2>
 				<carousel interval="5000">
 				<slide ng-repeat="slide in slides" active="slide.active">
-				<img ng-src="{{ slide.image }}" class="img-responsive">
+				<img ng-src="{{ slide.image }}" class="img-responsive" alt="cruise detail image">
 				</slide>
 				</carousel>
 			</div>

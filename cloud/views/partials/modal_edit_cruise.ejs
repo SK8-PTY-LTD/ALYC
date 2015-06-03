@@ -18,8 +18,8 @@
 					<div ng-file-drop ng-file-select ng-file-change="uploadCoverImage($files)" class="drop-box"
 						drag-over-class="dragover" ng-multiple="false" allow-dir="true"
 						accept="image/*,application/pdf">
-						<img ng-src="{{ cruise.coverImage.url() }}" ng-if="cruise.coverImage"alt="">
-						<img src="https://placehold.it/320&text=Cover+image+here." ng-if="!cruise.coverImage" alt="">
+						<img ng-src="{{ cruise.coverImage.url() }}" ng-if="cruise.coverImage"alt="cruise cover image">
+						<img src="https://placehold.it/320&text=Cover+image+here." ng-if="!cruise.coverImage" alt="placeholder image">
 						<progressbar class="progress-striped active" value="100" type="success" ng-show="isLoading"><span ng-bind="promote"></span></progressbar>
 					</div>
 					<div ng-no-file-drop>File Drag/Drop is not supported for this browser</div>
@@ -87,13 +87,13 @@
 						<label>Other Images</label><br>
 						<div ng-repeat="imageFile in cruise.imageArray">
 							<div class="drop-box-small col-md-3" ng-really-message="Delete this image?" ng-really-click="deleteImageFile(imageFile)">
-								<img ng-src="{{ imageFile.thumbnailURL(83, 83) }}" alt="">
+								<img ng-src="{{ imageFile.thumbnailURL(83, 83) }}" alt="detail image">
 							</div>
 						</div>
 						<div ng-file-drop ng-file-select ng-file-change="uploadCruiseImage($files)" class="drop-box-small col-md-3"
 							drag-over-class="dragover" ng-multiple="true" allow-dir="true"
 							accept="image/*">
-							<img  ng-src="https://placehold.it/83&text=Add" alt="">
+							<img  ng-src="https://placehold.it/83&text=Add" alt="placeholder image">
 						<progressbar class="progress-striped active" value="100" type="success" ng-show="isUploading">Uploading image</progressbar>
 					</div>
 				</div>

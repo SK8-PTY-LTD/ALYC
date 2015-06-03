@@ -27,7 +27,7 @@
                         <div class="row" ng-controller="CruiseCtrl">
                             <div class="col-sm-3" ng-repeat="cruise in cruises | filter:query" ng-click="editCruise(cruise)">
                                 <div class="thumbnail">
-                                    <img ng-src="{{ cruise.coverImage.url() }}" alt="">
+                                    <img ng-src="{{ cruise.coverImage.url() }}" alt="cruise cover image">
                                     <div class="caption">
                                         <h4 class="pull-right">$<span ng-bind="cruise.price"></span></h4>
                                         <h4><a><span ng-bind="cruise.name"></span></a>
@@ -38,7 +38,7 @@
                             </div>
                             <div class="col-sm-3" ng-click="newCruise()">
                                 <div class="thumbnail">
-                                    <img ng-src="http://placehold.it/160&text=New+Cruise" alt="">
+                                    <img ng-src="http://placehold.it/160&text=New+Cruise" alt="placerholder image">
                                     <div class="caption">
                                         <h4 class="pull-right">$0.00</h4>
                                         <h4><a>New Cruise</a></h4>
@@ -56,13 +56,13 @@
                         <label>相册</label><br>
                         <div ng-repeat="photo in photos">
                             <div class="drop-box-small col-md-3" ng-really-message="Delete this photo?" ng-really-click="deleteImageFile(photo)">
-                                <img ng-src="{{ photo.get('file').url() }}" class="col-xs-12" alt="">
+                                <img ng-src="{{ photo.get('file').url() }}" class="col-xs-12" alt="photos">
                             </div>
                         </div>
                         <div ng-file-drop ng-file-select ng-file-change="uploadPhoto($files)" class="drop-box-small col-md-3"
                             drag-over-class="dragover" ng-multiple="true" allow-dir="true"
                             accept="image/*">
-                            <img  ng-src="https://placehold.it/120&text=Add" alt="">
+                            <img  ng-src="https://placehold.it/120&text=Add" alt="placeholder image">
                         <progressbar class="progress-striped active" value="100" type="success" ng-show="isUploading">Uploading image</progressbar>
                     </div>
                 </div>
