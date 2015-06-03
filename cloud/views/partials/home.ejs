@@ -7,7 +7,7 @@
   <div class="col-md-12" ng-repeat="cruise in cruises | filter:query" ng-click="viewCruise(cruise)">
     <div class="row">
       <div class="col-md-4 inline-thm" bg-color="black">
-        <a><img ng-src="{{ cruise.coverImage.thumbnailURL(220,150) }}" class="img-responsive" alt="" alt="cruise cover image"></a>
+        <a><img ng-src="{{ cruise.coverImage.thumbnailURL(220,150) }}" class="img-responsive" alt="cruise cover image"></a>
       </div>
       <div class="col-md-6" bg-color="black">
         <div class="caption">
