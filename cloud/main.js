@@ -1,7 +1,7 @@
 var app = require("cloud/app.js");
 var Mailgun = require('mailgun-js');
 var MAINGUN_KEY = "key-1abb9ac6b44ecb7982ddf76079fd38fc";
-var MAINGUN_DOMAIN = "alyc.com.au";
+var MAINGUN_DOMAIN = "sk8.asia";
 //================================================================================
 // Cloud functions
 //================================================================================

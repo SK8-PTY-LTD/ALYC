@@ -11,8 +11,7 @@ var express = require('express'),
   api = require('cloud/routes/api'),
   http = require('http'),
   path = require('path'),
-  avosExpressHttpsRedirect = require('avos-express-https-redirect'),
-  forceDomain = require('forcedomain');
+  avosExpressHttpsRedirect = require('avos-express-https-redirect');
 
 var app = module.exports = express();
 
@@ -29,9 +28,6 @@ app.use(bodyParser());
 app.use(methodOverride());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.errorHandler());
-app.use(forceDomain({
-  hostname: 'www.alyc.com.au'
-}));
 
 
 /**

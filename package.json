@@ -10,7 +10,6 @@
         "method-override": "^1.0.0",
         "morgan": "^1.0.0",
         "express-force-domain": "0.0.6",
-        "prerender-node": "1.2.1",
-        "forcedomain": "0.4.0"
+        "prerender-node": "1.2.1"
     }
 }
