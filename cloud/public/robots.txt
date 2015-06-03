@@ -1,0 +1,4 @@
+User-Agent: *
+Disallow: /*.js
+
+Sitemap: http://www.alyc.com.au/sitemap.xml
