@@ -37,7 +37,9 @@ app.use(express.errorHandler());
 
 // serve index and view partials
 // Redirect non-www gets
-app.all('*', require('express-force-domain')('http://www.alyc.com.au'));
+// app.all('*', require('express-force-domain')('http://www.alyc.com.au'));
+// SEO
+app.use(require('prerender-node').set('prerenderToken', 'Pf8PJdmNmVwbfYbhT4Hm'));
 //Defaults
 app.get('/', routes.index);
 app.get('/partials/:name', routes.partials);
