@@ -36,6 +36,9 @@ app.use(express.errorHandler());
  */
 
 // serve index and view partials
+// Redirect non-www gets
+app.all('*', require('./express-force-domain')('http://www.alyc.com/'));
+//Defaults
 app.get('/', routes.index);
 app.get('/partials/:name', routes.partials);
 

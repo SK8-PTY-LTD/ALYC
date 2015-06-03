@@ -1,7 +1,7 @@
 var app = require("cloud/app.js");
 var Mailgun = require('mailgun-js');
 var MAINGUN_KEY = "key-1abb9ac6b44ecb7982ddf76079fd38fc";
-var MAINGUN_DOMAIN = "sk8.asia";
+var MAINGUN_DOMAIN = "alyc.com.au";
 //================================================================================
 // Cloud functions
 //================================================================================
@@ -30,7 +30,7 @@ AV.Cloud.define("sendEmail", function(request, response) {
 		from: from,
 		//The email to contact
 		// to: "nan@jmsaustralia.com",
-		to: "133342301@163.com",
+		to: receiver,
 		//Subject and text data
 		subject: subject,
 		html: "<html xmlns='http://www.w3.org/1999/xhtml'><head><meta name='viewport' content='width=device-width' /><meta http-equiv='Content-Type' content='text/html; charset=UTF-8' /><title>Alerts e.g. approaching your limit</title><link href='styles.css' media='all' rel='stylesheet' type='text/css' /></head><body itemscope itemtype='http://schema.org/EmailMessage'><table class='body-wrap'><tr><td></td><td class='container' width='600'><div class='content'><table class='main' width='100%' cellpadding='0' cellspacing='0'><tr><td class='alert alert-warning'>Attention, You have one new enquiry.</td></tr><tr><td class='content-wrap'><table width='100%' cellpadding='0' cellspacing='0'><tr><td class='content-block'>Client Name: <strong>" + name + "</strong>.</td></tr><tr><td class='content-block'>Reply to: <strong>" + email + "</strong>.</td></tr><tr><td class='content-block'>Phone number: <strong>" + phone + "</strong>.</td></tr><tr><td class='content-block'>Message: <br>" + content + "<br></td></tr><tr><td class='content-block'></td></tr></table></td></tr></table></div></td><td></td></tr></table></body></html>"
