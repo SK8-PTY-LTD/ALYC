@@ -4,7 +4,12 @@
  */
 
 exports.index = function(req, res){
-  res.render('index');
+  var host = req.header("host");
+  if (host.match(/^www\..*/i)) {
+  	res.render('index');
+  } else {
+    res.redirect(301, "http://www." + host);
+  }
 };
 
 exports.partials = function (req, res) {
